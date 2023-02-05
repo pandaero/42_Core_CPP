@@ -12,7 +12,7 @@ char	upperwhenlower(char ch)
 //Function turns a whole string to uppercase until null.
 std::string	*stringupperwhenlower(char *str)
 {
-	int	i = 0;
+	int				i = 0;
 	std::string *	out = new std::string();
 
 	while (str[i] != '\0')
