@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:08 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 01:08:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/06 01:21:21 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ Contact *	PhoneBook::add_contact(void)
 	{
 		replace_contact(this->search(8), cont);
 		delete cont;
+		return (this->search(8));
 	}
 	else
 		num_contacts++;
