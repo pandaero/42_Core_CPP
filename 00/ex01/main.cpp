@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:02 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 01:12:32 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/06 01:42:29 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_search_header(void)
 {
 	std::stringstream	headerelm;
 
-	headerelm << std::setw(10) << "index";
+	headerelm << '|' << std::setw(10) << "index";
 	std::cout << headerelm.str();
 	headerelm.str("");
 	headerelm << std::setw(10) << "first name";
@@ -31,7 +31,7 @@ void	print_search_header(void)
 	std::cout << "|" << headerelm.str();
 	headerelm.str("");
 	headerelm << std::setw(10) << "nickname";
-	std::cout << "|" << headerelm.str() << std::endl;
+	std::cout << "|" << headerelm.str() << '|' << std::endl;
 }
 
 //Function handles the search menu.

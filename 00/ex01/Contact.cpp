@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:10 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 00:42:50 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/06 01:41:09 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,20 @@ void	Contact::print(void)
 {
 	std::stringstream	indstr, first, last, nick;
 	indstr << std::setw(10) << index;
-	first << std::setw(10) << firstname;
-	last << std::setw(10) << lastname;
-	nick << std::setw(10) << nickname;
-	std::cout << indstr.str() << '|' << first.str() << '|' << last.str() << '|' << nick.str();
-	std::cout << std::endl;	
+	if (firstname.length() > 10)
+		first << firstname.substr(0, 9) << ".";
+	else
+		first << std::setw(10) << firstname;
+	if (lastname.length() > 10)
+		last << lastname.substr(0, 9) << ".";
+	else
+		last << std::setw(10) << lastname;
+	if (nickname.length() > 10)
+		nick << nickname.substr(0, 9) << ".";
+	else
+		nick << std::setw(10) << nickname;
+	std::cout << '|' << indstr.str() << '|' << first.str() << '|' << last.str() << '|' << nick.str();
+	std::cout << '|' << std::endl;	
 }
 
 //Function displays a contact's full information.
