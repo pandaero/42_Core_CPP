@@ -6,3 +6,7 @@
 
 # CPP 00 - Ex 01
 00/ex01/awesomephonebook
+
+# CPP 00 - Ex 02
+00/ex02/test
+00/ex02/*.log
