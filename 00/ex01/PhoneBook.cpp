@@ -6,16 +6,47 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:08 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 01:21:21 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:47:26 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <string>
 
-//Function initialises the private attributes of the object.
-void	PhoneBook::initialise(void)
+//Function constructs a phone book object.
+PhoneBook::PhoneBook(void)
 {
+	Contact *	one = new Contact();
+	Contact *	two = new Contact();
+	Contact *	three = new Contact();
+	Contact *	four = new Contact();
+	Contact *	five = new Contact();
+	Contact *	six = new Contact();
+	Contact *	seven = new Contact();
+	Contact *	eight = new Contact();
+
 	this->num_contacts = 0;
+	this->contacts[0] = one;
+	this->contacts[1] = two;
+	this->contacts[2] = three;
+	this->contacts[3] = four;
+	this->contacts[4] = five;
+	this->contacts[5] = six;
+	this->contacts[6] = seven;
+	this->contacts[7] = eight;
+}
+
+//Function destroys a phone book object.
+PhoneBook::~PhoneBook(void)
+{
+	delete this->contacts[0];
+	delete this->contacts[1];
+	delete this->contacts[2];
+	delete this->contacts[3];
+	delete this->contacts[4];
+	delete this->contacts[5];
+	delete this->contacts[6];
+	delete this->contacts[7];
 }
 
 //Function adds a contact with information to a phone book object.
@@ -24,9 +55,17 @@ Contact *	PhoneBook::add_contact(void)
 	Contact *	cont;
 	std::string	input;
 
-	cont = new Contact();
-	contacts[this->num_contacts] = cont;
-	cont->assign_index(this->num_contacts + 1);
+	if (this->num_contacts == 8)
+	{
+		cont = this->contacts[7];
+		cont->assign_index(8);
+	}
+	else
+	{
+		cont = this->contacts[this->num_contacts];
+		cont->assign_index(this->num_contacts + 1);
+	}
+	std::cout << "Index " << cont->get_index() << " / (8)\n";
 	// Get first name
 	std::cout << "First Name: ";
 	std::getline(std::cin, input);
@@ -73,14 +112,10 @@ Contact *	PhoneBook::add_contact(void)
 	}
 	cont->fill_secret(input);
 	// Check for last element
-	if (num_contacts == 8)
-	{
-		replace_contact(this->search(8), cont);
-		delete cont;
-		return (this->search(8));
-	}
+	if (this->num_contacts == 8)
+		return (cont);
 	else
-		num_contacts++;
+		this->num_contacts++;
 	return (cont);
 }
 
@@ -88,15 +123,15 @@ Contact *	PhoneBook::add_contact(void)
 Contact *	PhoneBook::search(int ind)
 {
 	Contact *	head;
-	int			i = 0;
+	int			i = 1;
 
-	head = contacts[i];
+	head = this->contacts[0];
 	while (i <= this->num_contacts)
 	{
 		if (head->get_index() == ind)
 			return (head);
 		if (i < this->num_contacts)
-			head = contacts[i];
+			head = this->contacts[i];
 		i++;
 	}
 	return (NULL);
@@ -106,28 +141,4 @@ Contact *	PhoneBook::search(int ind)
 int	PhoneBook::get_num_contacts(void)
 {
 	return (this->num_contacts);
-}
-
-//Function writes over contact information from one to another.
-void	PhoneBook::replace_contact(Contact * replace, Contact * cont)
-{
-	replace->fill_firstname(cont->get_firstname());
-	replace->fill_lastname(cont->get_lastname());
-	replace->fill_nickname(cont->get_nickname());
-	replace->fill_phone(cont->get_phone());
-	replace->fill_secret(cont->get_secret());
-}
-
-//Function deletes any contacts in the book.
-void	PhoneBook::close(void)
-{
-	int			i = 0;
-	Contact *	head;
-
-	while (i < this->num_contacts)
-	{
-		head = contacts[i];
-		delete head;
-		i++;
-	}
 }

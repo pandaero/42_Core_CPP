@@ -6,16 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:47:57 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 01:05:22 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:48:12 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT
 # define CONTACT
-# include <string>
-# include <iomanip>
 # include <iostream>
-# include <sstream>
 
 class Contact
 {

@@ -6,11 +6,15 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:10 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/06 01:41:09 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/07 00:20:26 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include <string>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
 
 //Function assigns an index to the contact.
 void	Contact::assign_index(int ind)
@@ -115,4 +119,3 @@ void	Contact::print_details(void)
 	std::cout << "Phone number: " << phone << "\n";
 	std::cout << "Darkest secret: " << darksecret << "\n";
 }
-
