@@ -14,7 +14,6 @@
 # define PHONEBOOK
 # include "Contact.hpp"
 
-
 class	PhoneBook
 {
 	public:
