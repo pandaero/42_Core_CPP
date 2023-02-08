@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:08 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/07 15:47:26 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:29:45 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,13 @@ PhoneBook::~PhoneBook(void)
 }
 
 //Function adds a contact with information to a phone book object.
-Contact *	PhoneBook::add_contact(void)
+Contact *	PhoneBook::add_contact(int time)
 {
 	Contact *	cont;
 	std::string	input;
 
-	if (this->num_contacts == 8)
-	{
-		cont = this->contacts[7];
-		cont->assign_index(8);
-	}
-	else
-	{
-		cont = this->contacts[this->num_contacts];
-		cont->assign_index(this->num_contacts + 1);
-	}
+	cont = this->contacts[time % 8];
+	cont->assign_index((time % 8) + 1);
 	std::cout << "Index " << cont->get_index() << " / (8)\n";
 	// Get first name
 	std::cout << "First Name: ";

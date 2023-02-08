@@ -20,7 +20,7 @@ class	PhoneBook
 		PhoneBook(void);
 		~PhoneBook(void);
 		int			get_num_contacts(void);
-		Contact *	add_contact(void);
+		Contact *	add_contact(int time);
 		Contact	*	search(int ind);
 
 	private:

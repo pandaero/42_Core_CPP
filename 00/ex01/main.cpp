@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 22:48:02 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/07 16:17:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:51:16 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(void)
 	std::string	mode, input;
 	PhoneBook	book;
 	Contact *	head;
+	int			time = 0;
 
 	std::cout << "----- Awesome Phone Book -----\nYou may: ADD - SEARCH - EXIT" << std::endl;
 	std::getline(std::cin, mode);
@@ -71,12 +72,13 @@ int	main(void)
 	{
 		if (mode == "ADD")
 		{
-			head = book.add_contact();
+			head = book.add_contact(time);
 			if (book.search(book.get_num_contacts()) == head)
 				std::cout << "Successfully added contact.\n";
 			else
 				std::cout << "Error: couldn't add contact.\n";
 			std::cout << "\nMAIN MENU - ADD - SEARCH - EXIT" << std::endl;
+			time++;
 		}
 		else if (mode == "SEARCH")
 		{
