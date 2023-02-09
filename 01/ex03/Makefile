@@ -7,7 +7,7 @@ CFLAGS	:= -Wall -Werror -Wextra
 COPT	:= -std=c++98
 
 # Source files
-SRC		:= main.cpp Weapon.cpp HumanA.cpp
+SRC		:= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 # Build directory for objects
 BUILD	:= build/
