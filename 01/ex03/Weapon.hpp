@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmeising <pmeising@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:41:33 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/10 09:49:32 by pmeising         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:49:12 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class	Weapon
 	public:
 		Weapon(void);
 		Weapon(std::string type);
-		bool		operator!(void);
 		std::string	getType(void);
 		void		setType(std::string type);
 

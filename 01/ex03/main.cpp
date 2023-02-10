@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:40:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/10 08:27:29 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/10 10:40:09 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(void)
 	Weapon	sword("Sword");
 	HumanA	peter("Peter", sword);
 	HumanB	bob("Bob");
+	Weapon	weapon();
 
 	peter.attack();
-	bob.attack();
 	sword.setType("Longsword");
 	bob.setWeapon(sword);
 	bob.attack();
@@ -31,8 +31,8 @@ int	main(void)
 }
 //*/
 
-//Test Program
 //*
+//Test Program
 int	main(void)
 {
 	{
