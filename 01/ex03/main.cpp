@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:40:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/09 22:24:23 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/10 08:27:29 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,42 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
+/*
 //Program creates humans who attack.
 int	main(void)
 {
-	Weapon	sword;
-	sword.setType("Sword");
+	Weapon	sword("Sword");
 	HumanA	peter("Peter", sword);
 	HumanB	bob("Bob");
 
 	peter.attack();
 	bob.attack();
-	bob.giveWeapon(sword);
+	sword.setType("Longsword");
+	bob.setWeapon(sword);
 	bob.attack();
 	return (0);
 }
+//*/
+
+//Test Program
+//*
+int	main(void)
+{
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
+	return 0;
+}
+//*/

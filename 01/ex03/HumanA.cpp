@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 20:50:23 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/09 21:21:34 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/10 09:34:55 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include <iostream>
 
 //Constructor for human A.
-HumanA::HumanA(std::string name, Weapon weapon)
+HumanA::HumanA(std::string name, Weapon & weapon): name(name), weapon(weapon)
 {
-	HumanA::name = name;	
-	HumanA::weapon = weapon;
+	
 }
 
 //Function makes human A perform an attack.

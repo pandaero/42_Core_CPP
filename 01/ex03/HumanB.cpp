@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:15:19 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/09 22:22:12 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/10 08:51:07 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ HumanB::HumanB(std::string name)
 }
 
 //Function assigns a weapon to human B.
-void	HumanB::giveWeapon(Weapon weapon)
+void	HumanB::setWeaponREF(Weapon & weapon)
 {
 	this->weapon = weapon;
+}
+
+//Function declares a weapon to assign to human B.
+void	HumanB::setWeapon(Weapon weapon)
+{
+	this->setWeaponREF(weapon);
 }
 
 //Function makes human B perform an attack.
 void	HumanB::attack(void)
 {
-	Weapon	empty;
 	if (!HumanB::weapon)
 		std::cout << this->name << " can't attack!" << std::endl;
 	else
