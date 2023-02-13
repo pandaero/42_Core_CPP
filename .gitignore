@@ -1,17 +1,17 @@
 # Any build folder
 **/build/
 
-# CPP 00 - Ex 00
+# CPP 00 - Ex00
 00/ex00/megaphone
 
-# CPP 00 - Ex 01
+# CPP 00 - Ex01
 00/ex01/awesomephonebook
 
-# CPP 00 - Ex 02
+# CPP 00 - Ex02
 00/ex02/test
 00/ex02/*.log
 
-# CPP 01 - Ex 00
+# CPP 01 - Ex00
 01/ex00/walkingdead
 
 # CPP 01 - Ex01
@@ -28,3 +28,6 @@
 
 # CPP 01 - Ex05
 01/ex05/harl
+
+# CPP 01 - Ex06
+01/ex06/harlFilter
