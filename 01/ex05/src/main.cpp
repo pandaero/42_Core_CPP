@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 23:00:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/13 23:05:06 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:01:27 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(void)
 	dude.complain("WARNING");
 	std::cout << "----- ----- ----- ----- -----\n";
 	dude.complain("ERROR");
+	std::cout << "----- ----- ----- ----- -----\n";
 	dude.complain("something else entirely");
 	return (0);
 }

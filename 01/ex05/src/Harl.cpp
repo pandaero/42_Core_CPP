@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:51:54 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/13 23:03:21 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:01:16 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 // PUBLIC
 void	Harl::complain(std::string level)
 {
-	if (level == "ERROR")
-		this->error();
-	else if (level == "WARNING")
-		this->warning();
-	else if (level == "INFO")
-		this->error();
-	else if (level == "DEBUG")
-		this->debug();
-	else
-		return;
-	return;
+	void (Harl::*funcarr[4]) (void) = {&Harl::error, &Harl::warning, &Harl::info, &Harl::debug};
+	std::string	strarr[4] = {"ERROR", "WARNING", "INFO", "DEBUG"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (strarr[i] == level)
+		{
+			(this->*funcarr[i])();
+			return;
+		}
+	}
 }
 
 // PRIVATE
