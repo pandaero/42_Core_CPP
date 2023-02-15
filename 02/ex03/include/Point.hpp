@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:26:06 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/15 14:17:00 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:58:28 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define POINT
 
 # include "Fixed.hpp"
+
+class	Point;
+
+bool	bsp(Point a, Point b, Point c, Point point);
 
 class	Point
 {
@@ -33,7 +37,4 @@ class	Point
 		const Fixed	x;
 		const Fixed	y;
 };
-
-bool	bsp(Point a, Point b, Point c, Point point);
-
 #endif
