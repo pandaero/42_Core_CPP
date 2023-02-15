@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:48:17 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/15 11:14:07 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:22:28 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,65 @@ Fixed::Fixed(const float value)
 //Greater than comparison operator.
 bool	Fixed::operator>(const Fixed & other)
 {
-	return (this->value > other.value);
+	int	signlhs = (value & 0x80000000) >> 31;
+	int	signrhs = (other.value & 0x80000000) >> 31;
+
+	if (signlhs == 1 && signrhs == 0)
+		return (false);
+	else if (signlhs == 0 && signrhs == 1)
+		return (true);
+	else if (signlhs == 0 && signrhs == 0)
+		return (this->value > other.value);
+	else
+		return ((this->value & 0x7FFFFFFF) < (other.value & 0x7FFFFFFF));
 }
 
 //Less than comparison operator.
 bool	Fixed::operator<(const Fixed & other)
 {
-	return (this->value < other.value);
+	int	signlhs = (value & 0x80000000) >> 31;
+	int	signrhs = (other.value & 0x80000000) >> 31;
+
+	if (signlhs == 1 && signrhs == 0)
+		return (true);
+	else if (signlhs == 0 && signrhs == 1)
+		return (false);
+	else if (signlhs == 0 && signrhs == 0)
+		return (this->value < other.value);
+	else
+		return ((this->value & 0x7FFFFFFF) > (other.value & 0x7FFFFFFF));
 }
 
 //Greater than or equal to comparison operator.
 bool	Fixed::operator>=(const Fixed & other)
 {
-	return (this->value >= other.value);
+	int	signlhs = (value & 0x80000000) >> 31;
+	int	signrhs = (other.value & 0x80000000) >> 31;
+
+	if (signlhs == 1 && signrhs == 0)
+		return (false);
+	else if (signlhs == 0 && signrhs == 1)
+		return (true);
+	else if (signlhs == 0 && signrhs == 0)
+		return (this->value >= other.value);
+	else
+		return ((this->value & 0x7FFFFFFF) <= (other.value & 0x7FFFFFFF));
 }
 
 //Less than or equal to comparison operator.
 bool	Fixed::operator<=(const Fixed & other)
 {
-	return (this->value <= other.value);
+	int	signlhs = (value & 0x80000000) >> 31;
+	int	signrhs = (other.value & 0x80000000) >> 31;
+
+	if (signlhs == 1 && signrhs == 0)
+		return (true);
+	else if (signlhs == 0 && signrhs == 1)
+		return (false);
+	else if (signlhs == 0 && signrhs == 0)
+		return (this->value <= other.value);
+	else
+		return ((this->value & 0x7FFFFFFF) >= (other.value & 0x7FFFFFFF));
 }
 
 //Equality comparison operator.
