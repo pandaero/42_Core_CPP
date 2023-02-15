@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 22:51:54 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/13 23:33:12 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:24:10 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ void	Harl::complain(std::string level)
 
 	if (level == "DEBUG")
 		compare = DEBUG;
-	if (level == "INFO")
+	else if (level == "INFO")
 		compare = INFO;
-	if (level == "WARNING")
+	else if (level == "WARNING")
 		compare = WARNING;
-	if (level == "ERROR")
+	else if (level == "ERROR")
 		compare = ERROR;
+	else
+		return;
 
 	switch (compare)
 	{
