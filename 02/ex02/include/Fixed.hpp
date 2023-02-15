@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:48:00 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/14 20:50:36 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:13:50 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ class	Fixed
 		Fixed &	operator--();
 		Fixed	operator--(int decrements);
 
-		float			toFloat(void) const;
-		int				toInt(void) const;
-		int				getRawBits(void) const;
-		void			setRawBits(const int raw);
+		float					toFloat(void) const;
+		int						toInt(void) const;
+		int						getRawBits(void) const;
+		void					setRawBits(const int raw);
+		static Fixed &			min(Fixed & num1, Fixed & num2);
+		static const Fixed &	min(const Fixed & num1, const Fixed & num2);
+		static Fixed &			max(Fixed & num1, Fixed & num2);
+		static const Fixed &	max(const Fixed & num1, const Fixed & num2);
 
 	private:
 		int					value;

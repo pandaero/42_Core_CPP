@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:48:17 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/15 10:10:01 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:14:07 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,17 @@ Fixed::Fixed(const int value)
 //Constructor using floating-point input.
 Fixed::Fixed(const float value)
 {
-	int		fractional;
-	int		negative = ((int) value) & 0x80000000;
-	int		intmask = 0x7FFFFFFF;
-	
-	Fixed::value = negative;
+	int	fractional;
+	int	numbmask = 0x7FFFFFFF;
+	int	sign;
+
+	(value >= 0) ? sign = 0 : sign = 1;
+	Fixed::value = sign * 0x80000000;
+
 	if (value < 0)
-		Fixed::value += (((int) -(-1 * (negative >> 31) * value)) & intmask) << fractionalBits;
+		Fixed::value += (((int) -value) & numbmask) << fractionalBits;
 	else if (value > 0)
-		Fixed::value += ((int) (value)) << fractionalBits;
+		Fixed::value += ((int) value) << fractionalBits;
 	else
 	{
 		Fixed::value = 0;
@@ -125,27 +127,14 @@ bool	Fixed::operator!=(const Fixed & other)
 //Addition operator.
 Fixed	Fixed::operator+(const Fixed & other)
 {
-	int signmask = 0x80000000;
-	int	numbmask = 0x7FFFFFFF;
-
-	int	integer1;
-	int	sign1 = (value & signmask) >> 31;
-	sign1 ? integer1 = -1 * ((value & numbmask) >> 8) : integer1 = ((value & numbmask) >> 8); 
-
-	int	integer2;
-	int	sign2 = (other.getRawBits() & signmask) >> 31;
-	sign2 ? integer2 = -1 * ((other.getRawBits() & numbmask) >> 8) : integer2 = ((other.getRawBits() & numbmask) >> 8); 
-
-	Fixed	ret;
-	ret.setRawBits(integer1 + integer2);
+	Fixed	ret(this->toFloat() + other.toFloat());
 	return (ret);
 }
 
 //Subtraction operator.
 Fixed	Fixed::operator-(const Fixed & other)
 {
-	Fixed ret;
-	ret.setRawBits(value - other.getRawBits());
+	Fixed	ret(this->toFloat() - other.toFloat());
 	return (ret);
 }
 
@@ -213,8 +202,19 @@ std::ostream &	operator<<(std::ostream & outStream, const Fixed & fixed)
 //Function returns an integer from the stored fixed point value.
 int	Fixed::toInt(void) const
 {
-	int	conversion = this->value >> Fixed::fractionalBits;
-	return (conversion);
+	int	signmask = 0x80000000;
+	int	uintmask = 0x7FFFFF00;
+	int	fracmask = 0xFF;
+
+	int	integer;
+	int	sign = (value & signmask) >> 31;
+	int	whole = (value & uintmask) >> fractionalBits;
+	sign ? integer = -1 * whole : integer = whole;
+
+	int	fract = (value & fracmask);
+	if (fract >= 128)
+		integer++;
+	return (integer);
 }
 
 //Function returns a floating point number from the stored fixed point value.
@@ -243,4 +243,40 @@ int		Fixed::getRawBits(void) const
 void	Fixed::setRawBits(const int raw)
 {
 	this->value = raw;
+}
+
+//Function returns the smaller of two fixed-point numbers.
+Fixed &	Fixed::min(Fixed & num1, Fixed & num2)
+{
+	if (num1.toFloat() > num2.toFloat())
+		return num2;
+	else
+		return num1;
+}
+
+//Function returns the smaller of two fixed-point numbers.
+const Fixed &	Fixed::min(const Fixed & num1, const Fixed & num2)
+{
+	if (num1.toFloat() > num2.toFloat())
+		return num2;
+	else
+		return num1;
+}
+
+//Function returns the larger of two fixed-point numbers.
+Fixed &	Fixed::max(Fixed & num1, Fixed & num2)
+{
+	if (num1.toFloat() > num2.toFloat())
+		return num1;
+	else
+		return num2;
+}
+
+//Function returns the larger of two fixed-point numbers.
+const Fixed &	Fixed::max(const Fixed & num1, const Fixed & num2)
+{
+	if (num1.toFloat() > num2.toFloat())
+		return num1;
+	else
+		return num2;
 }

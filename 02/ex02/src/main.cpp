@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:45:57 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/15 09:59:52 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:13:28 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main(void)
 {
-	Fixed		a(10.3f);
+	Fixed		a(-10.5f);
 	std::cout << "----- ----- ----- ----- -----\n";
 	Fixed		ab(10.3f);
 
@@ -96,6 +96,16 @@ int	main(void)
 	std::cout << "a / b: " << (a / b) << std::endl;
 	std::cout << "b / a: " << (b / a) << std::endl;
 
+	std::cout << "----- ----- ----- ----- -----\n";
+	Fixed & refa = a;
+	Fixed & refb = b;
+	std::cout << "min(a, b)      : " << a.min(refa, refb) << std::endl;
+	std::cout << "const min(a, b): " << a.min(refa, refb) << std::endl;
+
+	std::cout << "----- ----- ----- ----- -----\n";
+	std::cout << "max(a, b)      : " << a.max(refa, refb) << std::endl;
+	std::cout << "const max(a, b): " << a.max(refa, refb) << std::endl;
+	
 	std::cout << "----- ----- ----- ----- -----\n";
 	return (0);
 }
