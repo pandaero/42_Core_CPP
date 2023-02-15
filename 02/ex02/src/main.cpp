@@ -6,19 +6,23 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:45:57 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/14 20:50:27 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 09:59:52 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
 #include <iostream>
+#include <iomanip>
 
 int	main(void)
 {
-	Fixed		a(10);
+	Fixed		a(10.3f);
+	std::cout << "----- ----- ----- ----- -----\n";
+	Fixed		ab(10.3f);
 
 	std::cout << "----- ----- ----- ----- -----\n";
-	std::cout << "a is: " << a << std::endl;
+	std::cout << "a is: " << std::fixed << std::setprecision(6) << a << std::endl;
+	std::cout << "ab is: " << ab << std::endl;
 
 	Fixed	b = a++;
 	std::cout << "----- ----- ----- ----- -----\n";

@@ -6,12 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 13:48:17 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/14 20:56:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/15 10:10:01 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
 #include <iostream>
+#include <bitset>
 #include <cmath>
 
 //Static variable initialisation
@@ -55,13 +56,25 @@ Fixed::Fixed(const int value)
 //Constructor using floating-point input.
 Fixed::Fixed(const float value)
 {
-	int	fractional;
-	Fixed::value = ((int) floor(value)) << Fixed::fractionalBits;
-
+	int		fractional;
+	int		negative = ((int) value) & 0x80000000;
+	int		intmask = 0x7FFFFFFF;
+	
+	Fixed::value = negative;
+	if (value < 0)
+		Fixed::value += (((int) -(-1 * (negative >> 31) * value)) & intmask) << fractionalBits;
+	else if (value > 0)
+		Fixed::value += ((int) (value)) << fractionalBits;
+	else
+	{
+		Fixed::value = 0;
+		return;
+	}
+	
 	if (value > 0)
-		fractional = (value - (long) value) * 256;
+		fractional = (value - floor(value)) * 256;
 	else if (value < 0)
-		fractional = -(value - (long) value) * 256;
+		fractional =  (-value - floor(-value)) * 256;
 	else
 		fractional = 0;
 	
@@ -112,17 +125,19 @@ bool	Fixed::operator!=(const Fixed & other)
 //Addition operator.
 Fixed	Fixed::operator+(const Fixed & other)
 {
-	int	integer1 = value >> fractionalBits;
-	int	integer2 = other.getRawBits() >> fractionalBits;
+	int signmask = 0x80000000;
+	int	numbmask = 0x7FFFFFFF;
 
-	int	mask = fractionalBits * 32 - 1;
-	int	fractional1 = value & mask;
-	int	fractional2 = other.getRawBits() & mask;
+	int	integer1;
+	int	sign1 = (value & signmask) >> 31;
+	sign1 ? integer1 = -1 * ((value & numbmask) >> 8) : integer1 = ((value & numbmask) >> 8); 
+
+	int	integer2;
+	int	sign2 = (other.getRawBits() & signmask) >> 31;
+	sign2 ? integer2 = -1 * ((other.getRawBits() & numbmask) >> 8) : integer2 = ((other.getRawBits() & numbmask) >> 8); 
 
 	Fixed	ret;
-	ret.setRawBits(((integer1 + integer2) << fractionalBits) + \
-					((fractional1 + fractional2) & mask) + \
-					(((fractional1 + fractional2) >> fractionalBits) << fractionalBits));
+	ret.setRawBits(integer1 + integer2);
 	return (ret);
 }
 
@@ -151,7 +166,9 @@ Fixed	Fixed::operator/(const Fixed & other)
 //Pre-increment operator overload.
 Fixed &	Fixed::operator++()
 {
-	this->value++;
+	int	sign = (value & 0x80000000) >> 31;
+
+	sign ? value-- : value++;
 	return (*this);
 }
 
@@ -159,15 +176,18 @@ Fixed &	Fixed::operator++()
 Fixed	Fixed::operator++(int)
 {
 	Fixed	copy = *this;
+	int	sign = (value & 0x80000000) >> 31;
 
-	this->value++;
+	sign ? value-- : value++;
 	return (copy);
 }
 
 //Pre-decrement operator overload.
 Fixed &	Fixed::operator--()
 {
-	this->value--;
+	int	sign = (value & 0x80000000) >> 31;
+	
+	sign ? value++ : value--;
 	return (*this);
 }
 
@@ -175,8 +195,9 @@ Fixed &	Fixed::operator--()
 Fixed	Fixed::operator--(int)
 {
 	Fixed	copy = *this;
+	int	sign = (value & 0x80000000) >> 31;
 
-	this->value--;
+	sign ? value++ : value--;
 	return (copy);
 }
 
@@ -199,18 +220,17 @@ int	Fixed::toInt(void) const
 //Function returns a floating point number from the stored fixed point value.
 float	Fixed::toFloat(void) const
 {
-	float	integer, fractional;
-	int		sign, mask = Fixed::fractionalBits * 32 - 1;
+	int		negative = (value & 0x80000000) >> 31;
+	int		uintmask = 0x7FFFFF00;
+	int		fracmask = 0xFF;
+	float	entire, fractional;
 
-	sign = 
-	integer = this->value >> Fixed::fractionalBits;
-		fractional = (float) (this->value & mask) / 256;
-	if (this->toInt() > 0)
-		return (integer + fractional);
-	else if (this->toInt() < 0)
-		return (integer - fractional + 1);
-	else
-		return (fractional);
+	int uinteger = ((value & uintmask) >> 8);
+	negative ? entire = (float) -1 * uinteger : entire = (float) uinteger;
+
+	fractional = ((float) (value & fracmask)) / ((float) 0x100);
+	negative ? entire -= fractional : entire += fractional;
+	return (entire);
 }
 
 //Function returns the value of the raw bits contained in the number.
