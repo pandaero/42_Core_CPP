@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:05:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 09:32:46 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/16 10:21:57 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class	ClapTrap
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 		
-	private:
+	protected:
 		std::string	name;
 		int			hitpoints;
 		int			energypts;
