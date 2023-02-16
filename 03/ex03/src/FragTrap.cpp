@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:38:11 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 10:48:43 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:01:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ FragTrap &	FragTrap::operator=(const FragTrap & other)
 	if (this != &other)
 	{
 		ClapTrap::name = other.name;
-		ClapTrap::hitpoints = other.hitpoints;
-		ClapTrap::energypts = other.energypts;
-		ClapTrap::attackdmg = other.attackdmg;
+		ClapTrap::hitpoints = other.FragTrap::hitpoints;
+		ClapTrap::energypts = other.FragTrap::energypts;
+		ClapTrap::attackdmg = other.FragTrap::attackdmg;
 	}
 	return (*this);
 }

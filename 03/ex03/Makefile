@@ -17,6 +17,19 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # RULES
+# Execute the resulting program
+run: all
+	./$(NAME)
+
+# Run a valgrind check with output to the terminal
+valgrind: all
+	./valgrind --show-leak-kinds=all --leak-check=full
+
+# Run a valgrind check with output to a log file
+valgrind-log: all
+	./valgrind --show-leak-kinds=all --leak-check=full --log-file=$(diamond)-memcheck.log
+
+# Make executable and directories
 all: $(NAME) directories
 
 # Make directories
@@ -46,4 +59,4 @@ fclean: clean
 re: fclean all
 
 # State rules as non-files
-.PHONY: all directories clean fclean re
+.PHONY: all directories clean fclean re run valgrind valgrind-log

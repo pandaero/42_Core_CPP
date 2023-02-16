@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 09:26:08 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 10:11:04 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/16 13:17:43 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <string>
 # include "ClapTrap.hpp"
 
-class	ScavTrap: public ClapTrap
+class	ScavTrap: virtual public ClapTrap
 {
 	public:
 		ScavTrap(void);
