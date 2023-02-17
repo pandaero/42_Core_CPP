@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:57:40 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/17 09:27:13 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:30:08 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ DiamondTrap::DiamondTrap(void): ScavTrap(), FragTrap()
 //Copy constructor
 DiamondTrap::DiamondTrap(const DiamondTrap & other): ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
-	ClapTrap::name = other.name;
+	DiamondTrap::name = other.DiamondTrap::name;
+	ClapTrap::name = other.ClapTrap::name;
 	ClapTrap::hitpoints = other.hitpoints;
 	ClapTrap::energypts = other.energypts;
 	ClapTrap::attackdmg = other.attackdmg;
@@ -42,7 +43,8 @@ DiamondTrap &	DiamondTrap::operator=(const DiamondTrap & other)
 	std::cout << "DiamondTrap Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
-		ClapTrap::name = other.name;
+		DiamondTrap::name = other.DiamondTrap::name;
+		ClapTrap::name = other.ClapTrap::name;
 		ClapTrap::hitpoints = other.hitpoints;
 		ClapTrap::energypts = other.energypts;
 		ClapTrap::attackdmg = other.attackdmg;

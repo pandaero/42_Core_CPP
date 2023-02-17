@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:44:25 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/17 09:28:40 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:33:14 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int	main(void)
 	Tiffany.takeDamage(50);
 	Tiffany.guardGate();
 	Tiffany.whoAmI();
+	std::cout << "----- ----- ----- ----- ----- -----" << std::endl;
+	DiamondTrap	Cuffs(Tiffany);
+	Cuffs.whoAmI();
+	std::cout << "----- ----- ----- ----- ----- -----" << std::endl;
+	DiamondTrap	Cuack;
+	Cuack = Tiffany;
+	Cuack.whoAmI();
 	std::cout << "----- ----- ----- ----- ----- -----" << std::endl;
 	return (0);
 }
