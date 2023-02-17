@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:38:13 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 10:44:24 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:13:46 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRAGTRAP
 # include "ScavTrap.hpp"
 
-class	FragTrap: public ClapTrap
+class	FragTrap: virtual public ClapTrap
 {
 	public:
 		FragTrap(void);
