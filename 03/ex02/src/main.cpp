@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:44:25 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/17 09:09:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:11:19 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(void)
 	std::cout << "----- ----- ----- ----- ----- -----" << std::endl;
 	ScavTrap	Fred("Fred");
 	Fred.guardGate();
+	Fred.attack("Bob");
 	std::cout << "----- ----- ----- ----- ----- -----" << std::endl;
 	return (0);
 }
