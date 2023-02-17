@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:03:52 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 10:16:42 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 08:34:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ ClapTrap &	ClapTrap::operator=(const ClapTrap & other)
 }
 
 //Constructor using name input.
-ClapTrap::ClapTrap(std::string name): name(name), hitpoints(100), energypts(50), attackdmg(20)
+ClapTrap::ClapTrap(std::string name): name(name), hitpoints(10), energypts(10), attackdmg(0)
 {
 	std::cout << "ClapTrap Name-input constructor called" << std::endl;
 }
