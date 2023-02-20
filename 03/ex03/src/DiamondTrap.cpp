@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:57:40 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 15:11:09 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:39:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // PUBLIC
 //Default constructor
-DiamondTrap::DiamondTrap(void): ClapTrap()
+DiamondTrap::DiamondTrap(void): ScavTrap(), FragTrap()
 {
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
@@ -23,6 +23,11 @@ DiamondTrap::DiamondTrap(void): ClapTrap()
 //Copy constructor
 DiamondTrap::DiamondTrap(const DiamondTrap & other): ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
+	DiamondTrap::name = other.DiamondTrap::name;
+	ClapTrap::name = other.ClapTrap::name;
+	ClapTrap::hitpoints = other.hitpoints;
+	ClapTrap::energypts = other.energypts;
+	ClapTrap::attackdmg = other.attackdmg;
 	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 }
 
@@ -38,7 +43,7 @@ DiamondTrap &	DiamondTrap::operator=(const DiamondTrap & other)
 	std::cout << "DiamondTrap Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
-		name = other.DiamondTrap::name;
+		DiamondTrap::name = other.DiamondTrap::name;
 		ClapTrap::name = other.ClapTrap::name;
 		ClapTrap::hitpoints = other.hitpoints;
 		ClapTrap::energypts = other.energypts;
@@ -48,11 +53,14 @@ DiamondTrap &	DiamondTrap::operator=(const DiamondTrap & other)
 }
 
 //Name-initiating constructor
-DiamondTrap::DiamondTrap(const std::string name): ClapTrap(name + "_clap_name"), name(name)
+DiamondTrap::DiamondTrap(const std::string name): ClapTrap(name)
 {
+	DiamondTrap::name = name;
+	ClapTrap::name = name + "_clap_name";
 	std::cout << "DiamondTrap Name-input constructor called" << std::endl;
 }
 
+//Function displays the names of the diamond Trap.
 void	DiamondTrap::whoAmI(void)
 {
 	std::cout << "I am: " << DiamondTrap::name << " AKA: " << ClapTrap::name << std::endl;

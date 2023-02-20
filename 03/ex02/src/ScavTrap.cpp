@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 09:26:12 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/16 10:26:27 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/17 09:35:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@
 //Default constructor
 ScavTrap::ScavTrap(void): ClapTrap()
 {
+	ClapTrap::hitpoints = 100;
+	ClapTrap::energypts = 50;
+	ClapTrap::attackdmg = 20;
 	std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
 //Copy constructor
 ScavTrap::ScavTrap(const ScavTrap & other): ClapTrap(other)
 {
+	ClapTrap::name = other.name;
+	ClapTrap::hitpoints = other.hitpoints;
+	ClapTrap::energypts = other.energypts;
+	ClapTrap::attackdmg = other.attackdmg;
 	std::cout << "ScavTrap Copy constructor called" << std::endl;
 }
 
@@ -49,13 +56,17 @@ ScavTrap &	ScavTrap::operator=(const ScavTrap & other)
 //Name-initiating constructor
 ScavTrap::ScavTrap(const std::string name): ClapTrap(name)
 {
+	ClapTrap::name = name;
+	ClapTrap::hitpoints = 100;
+	ClapTrap::energypts = 50;
+	ClapTrap::attackdmg = 20;
 	std::cout << "ScavTrap Name-input constructor called" << std::endl;
 }
 
 //Function puts the ScavTrap in guard mode.
 void	ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap " << ClapTrap::name << " is now in Gate guard mode." << std::endl;
+	std::cout << "ScavTrap " << ClapTrap::name << " is now in gate-guard mode." << std::endl;
 }
 
 //Function attacks a target.
