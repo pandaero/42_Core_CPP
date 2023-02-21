@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:58:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/21 20:07:51 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:59:48 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Animal &	Animal::operator=(const Animal & other)
 }
 
 //Function prints message according to sound that animal makes.
-void	Animal::makeSound(void)
+void	Animal::makeSound(void) const
 {
 	if (Animal::type == "Dog")
 		std::cout << "Barks: Woof woof!" << std::endl;

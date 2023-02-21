@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:12:32 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/21 20:33:52 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/21 21:00:15 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ int	main(void)
 	cone.makeSound();
 	ctwo.makeSound();
 	cthree.makeSound();
+
+	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;
+	
+	const Animal *	meta = new Animal();
+	const Animal *	j = new Dog();
+	const Animal *	i = new Cat();
+
+	//std::cout << j->getType() << std::endl;
+	//std::cout << i->getType() << std::endl;
+	i->makeSound();
+	j->makeSound();
+	meta->makeSound();
 
 	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;
 	
