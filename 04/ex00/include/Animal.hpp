@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/21 20:59:41 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:57:12 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ class	Animal
 		~Animal();
 		Animal &	operator=(const Animal & other);
 
-		void	makeSound(void) const;
+		std::string	getType(void) const;
+		void		makeSound(void) const;
 
 	protected:
 		std::string	type;

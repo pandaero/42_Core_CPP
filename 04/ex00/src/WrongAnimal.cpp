@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,50 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Animal.hpp"
+#include "../include/WrongAnimal.hpp"
 #include <iostream>
 
 // PUBLIC
 //Default constructor
-Animal::Animal(void)
+WrongAnimal::WrongAnimal(void)
 {
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
 //Copy constructor
-Animal::Animal(const Animal & other): type(other.type)
+WrongAnimal::WrongAnimal(const WrongAnimal & other): type(other.type)
 {
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
 //Default destructor
-Animal::~Animal(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 //Copy assignment operator overload
-Animal &	Animal::operator=(const Animal & other)
+WrongAnimal &	WrongAnimal::operator=(const WrongAnimal & other)
 {
-	std::cout << "Animal copy assignment operator called" << std::endl;
+	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	if (this != &other)
 		type = other.type;
 	return (*this);
 }
 
 //Function gets the type of the animal.
-std::string	Animal::getType(void) const
+std::string	WrongAnimal::getType(void) const
 {
 	return (type);
 }
 
 //Function prints message according to sound that animal makes.
-void	Animal::makeSound(void) const
+void	WrongAnimal::makeSound(void) const
 {
-	if (Animal::type == "Dog")
+	if (WrongAnimal::type == "Dog")
 		std::cout << "Barks: Woof woof!" << std::endl;
-	else if (Animal::type == "Cat")
+	else if (WrongAnimal::type == "Cat")
 		std::cout << "Meows: Meow!" << std::endl;
 	else
-		std::cout << "Animal sounds." << std::endl;
+		std::cout << "WrongAnimal sounds." << std::endl;
 }

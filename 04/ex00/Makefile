@@ -8,7 +8,7 @@ COPT	:= -std=c++98
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRC_PRE	:= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
