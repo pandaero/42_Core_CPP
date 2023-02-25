@@ -1,6 +1,9 @@
 # Any build folder
 **/build/
 
+# Any debug symbol file directory
+**/*.dSYM
+
 # CPP 00 - Ex00
 00/ex00/megaphone
 
