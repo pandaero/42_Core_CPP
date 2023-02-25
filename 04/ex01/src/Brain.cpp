@@ -54,7 +54,6 @@ void	Brain::setIdea(std::string idea)
 	while (!ideas[i].empty())
 		i++;
 	ideas[i] = idea;
-	std::cout << "Idea " << i << " set" << std::endl;
 }
 
 //Function returns all the ideas within the brain.

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:05:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 15:14:53 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/25 18:00:19 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,19 @@ Cat &	Cat::operator=(const Cat & other)
 	if (this != &other)
 	{
 		type = other.type;
-		brain = other.brain;
+		*brain = *other.brain;
 	}
 	return (*this);
+}
+
+//Function assigns an idea to the cat's brain.
+void	Cat::setIdea(std::string idea)
+{
+	brain->setIdea(idea);
+}
+
+//Function returns all the ideas within the cat's brain.
+void	Cat::getIdeas()
+{
+	brain->getIdeas();
 }

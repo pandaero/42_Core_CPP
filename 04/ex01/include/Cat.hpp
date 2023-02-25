@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 15:42:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:28:33 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT
 # include "Animal.hpp"
 # include "Brain.hpp"
+# include <iostream>
 
 class	Cat: public Animal
 {
@@ -22,6 +23,9 @@ class	Cat: public Animal
 		Cat(const Cat & other);
 		~Cat();
 		Cat &	operator=(const Cat & other);
+
+		void	setIdea(std::string idea);
+		void	getIdeas();
 
 	private:
 		Brain *	brain;
