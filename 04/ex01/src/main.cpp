@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:12:32 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 16:54:45 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:21:07 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,19 @@ int	main(void)
 
 	{
 		Brain	brain;
+
+		brain.setIdea("I think.");
+		brain.setIdea("I am.");
+		brain.getIdeas();
+
 		Brain	two(brain);
+
+		two.getIdeas();
+
 		Brain	three;
 
 		three = brain;
+		three.getIdeas();
 	}
 	
 	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;

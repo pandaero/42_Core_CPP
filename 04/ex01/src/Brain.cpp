@@ -45,3 +45,27 @@ Brain &	Brain::operator=(const Brain & other)
 	}
 	return (*this);
 }
+
+//Function assigns an idea to the brain.
+void	Brain::setIdea(std::string idea)
+{
+	int	i = 0;
+
+	while (!ideas[i].empty())
+		i++;
+	ideas[i] = idea;
+	std::cout << "Idea " << i << " set" << std::endl;
+}
+
+//Function returns all the ideas within the brain.
+void	Brain::getIdeas()
+{
+	int	i = 0;
+
+	std::cout << "Ideas:" << std::endl;
+	while (!ideas[i].empty())
+	{
+		std::cout << i + 1 << ": " << ideas[i] << std::endl;
+		i++;
+	}
+}
