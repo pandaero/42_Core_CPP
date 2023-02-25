@@ -4,11 +4,11 @@ NAME	:= intelligence
 # Compiler 
 CC		:= c++
 CFLAGS	:= -Wall -Werror -Wextra
-COPT	:= -std=c++98
+COPT	:= -std=c++98 #-g -fsanitize=address
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Animal.cpp Brain.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC_PRE	:= main.cpp Animal.cpp Brain.cpp Dog.cpp Cat.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -31,8 +31,8 @@ $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $^ -o $@
 
 # Make the build directory
-$(BUILD):
-	mkdir -p build
+$(patsubst %/,%,$(BUILD)):
+	mkdir -p $(BUILD)
 
 # Clean intermediary files
 clean:
