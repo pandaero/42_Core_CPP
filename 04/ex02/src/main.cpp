@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:12:32 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 18:56:18 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:14:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ int	main(void)
 		doggo = doggy;
 		doggo.getIdeas();
 
-		Cat	catty;
-		catty.setIdea("Milk is nice.");
-		catty.getIdeas();
+		Cat *	catty = new Cat();
+		catty->setIdea("Milk is nice.");
+		catty->getIdeas();
 
-		Cat	catto;
-		catto = catty;
-		catto.getIdeas();
+		Cat *	catto = new Cat();
+		*catto = *catty;
+		delete catty;
+		catto->getIdeas();
 	}
 	
 	// {

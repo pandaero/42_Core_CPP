@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 14:14:18 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:16:50 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ class	WrongCat: public WrongAnimal
 		WrongCat(const WrongCat & other);
 		~WrongCat();
 		WrongCat &	operator=(const WrongCat & other);
+
+		void	makeSound() const;
 };
 #endif

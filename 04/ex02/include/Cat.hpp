@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 17:28:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:31:22 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class	Cat: public Animal
 		~Cat();
 		Cat &	operator=(const Cat & other);
 
+		void	makeSound() const;
 		void	setIdea(std::string idea);
 		void	getIdeas();
 
