@@ -31,7 +31,7 @@ $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $^ -o $@
 
 # Make the build directory
-$(patsubst %/,%,$(BUILD)):
+$(patsubst %/, %, $(BUILD)):
 	mkdir -p $(BUILD)
 
 # Clean intermediary files
