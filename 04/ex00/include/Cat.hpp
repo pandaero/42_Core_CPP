@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 14:14:26 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:14:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ class	Cat: public Animal
 		Cat(const Cat & other);
 		~Cat();
 		Cat &	operator=(const Cat & other);
+		
+		void	makeSound() const;
 };
 #endif

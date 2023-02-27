@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:58:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 13:57:05 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:14:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 #include <iostream>
 
 // PUBLIC
-//Default constructor
-Animal::Animal(void)
+//Default constructor.
+Animal::Animal()
 {
 	std::cout << "Animal constructor called" << std::endl;
 }
 
-//Copy constructor
+//Copy constructor.
 Animal::Animal(const Animal & other): type(other.type)
 {
 	std::cout << "Animal copy constructor called" << std::endl;
 }
 
-//Default destructor
-Animal::~Animal(void)
+//Default destructor.
+Animal::~Animal()
 {
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-//Copy assignment operator overload
+//Copy assignment operator overload.
 Animal &	Animal::operator=(const Animal & other)
 {
 	std::cout << "Animal copy assignment operator called" << std::endl;
@@ -42,18 +42,13 @@ Animal &	Animal::operator=(const Animal & other)
 }
 
 //Function gets the type of the animal.
-std::string	Animal::getType(void) const
+std::string	Animal::getType() const
 {
 	return (type);
 }
 
-//Function prints message according to sound that animal makes.
-void	Animal::makeSound(void) const
+//Function prints message for animal sound.
+void	Animal::makeSound() const
 {
-	if (Animal::type == "Dog")
-		std::cout << "Barks: Woof woof!" << std::endl;
-	else if (Animal::type == "Cat")
-		std::cout << "Meows: Meow!" << std::endl;
-	else
-		std::cout << "Animal sounds." << std::endl;
+	std::cout << "Animal sounds." << std::endl;
 }

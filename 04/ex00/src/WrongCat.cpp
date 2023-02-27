@@ -18,14 +18,14 @@
 WrongCat::WrongCat()
 {
 	std::cout << "WrongCat constructor called" << std::endl;
-	type = "WrongCat";
+	wrongtype = "WrongCat";
 }
 
 //Copy constructor
 WrongCat::WrongCat(const WrongCat & other)
 {
 	std::cout << "WrongCat copy constructor called" << std::endl;
-	type = other.type;
+	wrongtype = other.wrongtype;
 }
 
 //Default destructor
@@ -39,6 +39,12 @@ WrongCat &	WrongCat::operator=(const WrongCat & other)
 {
 	std::cout << "WrongCat copy assignment operator called" << std::endl;
 	if (this != &other)
-		type = other.type;
+		wrongtype = other.wrongtype;
 	return (*this);
+}
+
+//Function prints message according to animal sound.
+void	WrongCat::makeSound(void) const
+{
+	std::cout << "Wrong Meows: WrongMeow!" << std::endl;
 }
