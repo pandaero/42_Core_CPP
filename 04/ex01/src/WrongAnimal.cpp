@@ -21,7 +21,7 @@ WrongAnimal::WrongAnimal(void)
 }
 
 //Copy constructor
-WrongAnimal::WrongAnimal(const WrongAnimal & other): type(other.type)
+WrongAnimal::WrongAnimal(const WrongAnimal & other): wrongtype(other.wrongtype)
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
@@ -37,23 +37,18 @@ WrongAnimal &	WrongAnimal::operator=(const WrongAnimal & other)
 {
 	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	if (this != &other)
-		type = other.type;
+		wrongtype = other.wrongtype;
 	return (*this);
 }
 
 //Function gets the type of the animal.
 std::string	WrongAnimal::getType(void) const
 {
-	return (type);
+	return (wrongtype);
 }
 
-//Function prints message according to sound that animal makes.
+//Function prints message according to animal sound.
 void	WrongAnimal::makeSound(void) const
 {
-	if (WrongAnimal::type == "Dog")
-		std::cout << "Barks: Woof woof!" << std::endl;
-	else if (WrongAnimal::type == "Cat")
-		std::cout << "Meows: Meow!" << std::endl;
-	else
-		std::cout << "WrongAnimal sounds." << std::endl;
+	std::cout << "WrongAnimal sounds." << std::endl;
 }

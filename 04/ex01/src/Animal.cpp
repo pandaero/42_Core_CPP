@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:58:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/22 13:57:05 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:49:39 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,5 @@ std::string	Animal::getType(void) const
 //Function prints message according to sound that animal makes.
 void	Animal::makeSound(void) const
 {
-	if (Animal::type == "Dog")
-		std::cout << "Barks: Woof woof!" << std::endl;
-	else if (Animal::type == "Cat")
-		std::cout << "Meows: Meow!" << std::endl;
-	else
-		std::cout << "Animal sounds." << std::endl;
+	std::cout << "Animal sounds." << std::endl;
 }

@@ -6,12 +6,11 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:05:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 18:00:19 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:45:47 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Cat.hpp"
-#include <iostream>
 
 // PUBLIC
 //Default constructor
@@ -47,6 +46,12 @@ Cat &	Cat::operator=(const Cat & other)
 		*brain = *other.brain;
 	}
 	return (*this);
+}
+
+//Function prints message for animal sound.
+void	Cat::makeSound(void) const
+{
+	std::cout << "Meows: Meow!" << std::endl;
 }
 
 //Function assigns an idea to the cat's brain.

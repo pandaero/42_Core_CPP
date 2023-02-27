@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:12:32 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 18:00:52 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:48:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ int	main(void)
 		Cat	catto;
 		catto = catty;
 		catto.getIdeas();
+	}
+
+	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;
+
+	{
+		Dog	basic;
+		Dog	temp = basic;
+		Dog	tmp;
+
+		tmp = basic;
+
+		basic.setIdea("Bone.");
+		basic.getIdeas();
+		temp.getIdeas();
+		tmp.getIdeas();
 	}
 
 	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;

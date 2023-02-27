@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:05:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 17:58:04 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:33:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ Dog &	Dog::operator=(const Dog & other)
 		*brain = *other.brain;
 	}
 	return (*this);
+}
+
+//Function prints message for animal sound.
+void	Dog::makeSound() const
+{
+	std::cout << "Barks: Woof woof!" << std::endl;
 }
 
 //Function assigns an idea to the cat's brain.

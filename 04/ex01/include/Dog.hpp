@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:53:29 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/25 17:32:48 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:31:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class	Dog: public Animal
 		~Dog();
 		Dog &	operator=(const Dog & other);
 
+		void	makeSound() const;
 		void	setIdea(std::string idea);
 		void	getIdeas();
 
