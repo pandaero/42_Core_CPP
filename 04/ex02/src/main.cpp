@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:12:32 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/27 19:14:20 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:02:54 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@ int	main(void)
 	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;
 
 	{
-		Brain	brain;
+		Brain *	brain = new Brain();
 
-		brain.setIdea("I think.");
-		brain.setIdea("I am.");
-		brain.getIdeas();
+		brain->setIdea("I think.");
+		brain->setIdea("I am.");
+		brain->getIdeas();
 
-		Brain	two(brain);
+		Brain *	two = new Brain(*brain);
+		two->getIdeas();
 
-		two.getIdeas();
+		delete brain;
+		two->getIdeas();
 
-		Brain	three;
+		Brain *	three = new Brain();
 
-		three = brain;
-		three.getIdeas();
+		*three = *two;
+		three->getIdeas();
+
+		delete two;
+		two->getIdeas();
 	}
 	
 	std::cout << "----- ----- ----- ----- ----- ----- ----- ----- ----- -----" << std::endl;
@@ -55,7 +60,10 @@ int	main(void)
 		catty->getIdeas();
 
 		Cat *	catto = new Cat();
+	
 		*catto = *catty;
+		catto->getIdeas();
+
 		delete catty;
 		catto->getIdeas();
 	}
