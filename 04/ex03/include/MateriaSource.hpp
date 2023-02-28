@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,22 @@
 
 #ifndef MATERIASOURCE
 # define MATERIASOURCE
+# include "IMateriaSource.hpp"
+# include "Ice.hpp"
+# include "Cure.hpp"
 
-class MateriaSource
+class MateriaSource: public IMateriaSource
 {
 	public:
-		ICharacter();
-		ICharacter(const ICharacter & other);
-		~ICharacter();
-		ICharacter &	operator=(const ICharacter & other);
+		MateriaSource();
+		MateriaSource(const MateriaSource & other);
+		~MateriaSource();
+		MateriaSource &	operator=(const MateriaSource & other);
 		
-		ICharacter(std::string const & name);
-
-		std::string const & getType() const;
-
-		virtual ICharacter *	clone() const = 0;
-		virtual void		use(ICharacter & target);
+		void		learnMateria(AMateria *);
+		AMateria *	createMateria(const std::string & type);
+	
+	private:
+		AMateria *	bin[4];
 };
 #endif

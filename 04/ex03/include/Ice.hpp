@@ -15,7 +15,7 @@
 # include "AMateria.hpp"
 # include "ICharacter.hpp"
 
-class Ice
+class Ice: public AMateria
 {
 	public:
 		Ice();
@@ -23,11 +23,7 @@ class Ice
 		~Ice();
 		Ice &	operator=(const Ice & other);
 		
-		std::string const & getType() const;
-		Ice *				clone(const Ice & other);
-		void				use(ICharacter & target);
-
-	private:
-		std::string	type;
+		AMateria *	clone() const;
+		void		use(ICharacter & target);
 };
 #endif

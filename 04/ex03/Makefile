@@ -4,11 +4,11 @@ NAME	:= maging
 # Compiler 
 CC		:= c++
 CFLAGS	:= -Wall -Werror -Wextra
-COPT	:= -std=c++98 #-g -fsanitize=address
+COPT	:= -std=c++98 -g -fsanitize=address
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp
+SRC_PRE	:= main.cpp AMateria.cpp MateriaSource.cpp Character.cpp Ice.cpp Cure.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -31,7 +31,7 @@ $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $^ -o $@
 
 # Make the build directory
-$(patsubst %/,%,$(BUILD)):
+$(patsubst %/, %, $(BUILD)):
 	mkdir -p $(BUILD)
 
 # Clean intermediary files
