@@ -73,13 +73,18 @@ void	Character::equip(AMateria * materia)
 {
 	int	i = 0;
 
+	if (materia == NULL)
+		return;
 	while (i < 4)
 	{
 		if (!inventory[i])
 		{
-			inventory[i] = materia;
+			inventory[i] = materia->clone();
+			delete materia;
 			break;
 		}
+		if (inventory[i] && i == 3)
+			delete materia;
 		i++;
 	}
 }
@@ -87,6 +92,8 @@ void	Character::equip(AMateria * materia)
 //Function makes Character unequip Materia.
 void	Character::unequip(int index)
 {
+	if (index > 3)
+		return;
 	if (!inventory[index])
 		inventory[index] = NULL;
 }
@@ -94,6 +101,8 @@ void	Character::unequip(int index)
 //Function uses a Materia on a Character through the interface class.
 void	Character::use(int index, ICharacter & target)
 {
+	if (index > 3)
+		return;
 	if (inventory[index])
 		inventory[index]->use(target);
 }

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:20:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/28 01:27:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/28 03:04:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ MateriaSource::MateriaSource(const MateriaSource & other)
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource deconstructor called" << std::endl;
+
+	int	i = 0;
+	while (i < 4)
+	{
+		if (bin[i])
+			delete bin[i];
+		i++;
+	}	
 }
 
 //Copy assignment operator.
@@ -57,6 +65,7 @@ void	MateriaSource::learnMateria(AMateria * materia)
 		{
 			// std::cout << "Learned type: " << materia->getType() << std::endl;
 			bin[i] = materia->clone();
+			delete materia;
 			break;
 		}
 		i++;
@@ -67,13 +76,13 @@ AMateria *	MateriaSource::createMateria(const std::string & type)
 {
 	int	i = 0;
 	
-	std::cout << "Type to create: " << type << std::endl;
+	// std::cout << "Type to create: " << type << std::endl;
 	while (i < 4)
 	{
-		std::cout << "Type found: " << bin[i]->getType() << std::endl;
+		// std::cout << "Type found: " << bin[i]->getType() << std::endl;
 		if (bin[i]->getType() == type)
 		{
-			std::cout << "Created " << type << std::endl;
+			// std::cout << "Created " << type << std::endl;
 			return (bin[i]->clone());
 		}
 		i++;
