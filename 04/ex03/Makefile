@@ -4,7 +4,7 @@ NAME	:= maging
 # Compiler 
 CC		:= c++
 CFLAGS	:= -Wall -Werror -Wextra
-COPT	:= -std=c++98 -g -fsanitize=address
+COPT	:= -std=c++98 #-g -fsanitize=address
 
 # Source files
 SRC_DIR	:= src/

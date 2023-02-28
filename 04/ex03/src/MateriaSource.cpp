@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 20:20:04 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/28 03:04:44 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:08:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	MateriaSource::learnMateria(AMateria * materia)
 			delete materia;
 			break;
 		}
+		if (bin[i] && i == 3)
+			delete materia;
 		i++;
 	}
 }

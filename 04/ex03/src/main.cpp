@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:18:49 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/02/28 03:01:14 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:09:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main()
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
 		src->learnMateria(new Cure());
 
 		AMateria *		temp;
