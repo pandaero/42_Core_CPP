@@ -16,6 +16,13 @@ BUILD	:= build/
 OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
+# OS-Protection
+ifeq ($(shell uname), Linux)
+	BUILD_DIR	:= $(BUILD)
+else
+	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
+endif
+
 # RULES
 all: $(NAME) directories
 
@@ -31,8 +38,8 @@ $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $^ -o $@
 
 # Make the build directory
-$(patsubst %/, %, $(BUILD)):
-	mkdir -p $(BUILD)
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
 # Clean intermediary files
 clean:
