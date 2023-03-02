@@ -8,12 +8,12 @@ COPT	:= -std=c++98 #-g -fsanitize=address
 
 # Include files
 INC_DIR := include/
-INC_PRE := Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+INC_PRE := Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRC_PRE	:= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -22,11 +22,11 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-ifeq ($(shell uname), Darwin)
+#ifeq ($(shell uname), Darwin)
 	BUILD_DIR	:= $(BUILD)
-else
-	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
-endif
+#else
+#	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
+#endif
 
 # RULES
 all: $(NAME) directories

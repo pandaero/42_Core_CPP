@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 21:47:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 22:27:00 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:57:18 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	createShrubbery(std::string target)
 	}
 	else
 	{
-		file << "  /\\     " <<  "  /\\\n";
+		file << "  /\\     "  << "  /\\\n";
 		file << " //\\\\    " << " //\\\\\n";
 		file << "//||\\\\   " << "//||\\\\\n";
-		file << "  ||     " <<   "  ||" << std::endl;
+		file << "  ||     "   << "  ||" << std::endl;
 		file.close();
 	}
 }
@@ -45,7 +45,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(): isSigned(false), name("Shrubbery
 }
 
 //Copy constructor.
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & other):  isSigned(false), name(other.name), signGrade(other.signGrade), execGrade(other.execGrade), target(other.target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & other): AForm(other), isSigned(false), name(other.name), signGrade(other.signGrade), execGrade(other.execGrade), target(other.target)
 {
 
 }
@@ -65,7 +65,7 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreation
 }
 
 //Target-initiating constructor
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): isSigned(false), name("Shrubbery Creation Form"), signGrade(145), execGrade(137), target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("Shrubbery Creation Form", 145, 137), isSigned(false), name("Shrubbery Creation Form"), signGrade(145), execGrade(137), target(target)
 {
 
 }
@@ -73,8 +73,9 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target): isSigned(false
 //Signs the form if bureaucrat is allowed.
 bool	ShrubberyCreationForm::beSigned(const Bureaucrat & bureaucrat)
 {
-	(void) bureaucrat;
-	return (true);
+	if (bureaucrat.getGrade() <= signGrade)
+		isSigned = true;
+	return (isSigned);
 }
 
 //Executes the form if executor is allowed.
