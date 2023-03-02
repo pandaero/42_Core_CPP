@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:38:35 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 23:57:51 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:19:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	RobotomyRequestForm::beSigned(const Bureaucrat & bureaucrat)
 }
 
 //Executes the form if executor is allowed.
-void	RobotomyRequestForm::execute(const Bureaucrat & executor) const
+bool	RobotomyRequestForm::execute(const Bureaucrat & executor) const
 {
 	if (executor.getGrade() <= execGrade)
 	{
@@ -66,7 +66,11 @@ void	RobotomyRequestForm::execute(const Bureaucrat & executor) const
 		else
 			std::cout << target << " has not been robotomised successfully." << std::endl;
 		robotomyCount++;
+		return (true);
 	}
 	else
+	{
 		std::cout << "Could not execute form as " << executor.getName() << " is not of high enough grade" << std::endl;
+		return (false);
+	}
 }

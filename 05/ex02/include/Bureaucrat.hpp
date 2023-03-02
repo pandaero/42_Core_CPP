@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:36:46 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 22:11:52 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:15:18 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class	Bureaucrat
 		void		decreaseGrade();
 
 		void		signForm(AForm & form);
+		void		executeForm(AForm & form);
 
 		std::logic_error	GradeTooHighException();
 		std::logic_error	GradeTooLowException();

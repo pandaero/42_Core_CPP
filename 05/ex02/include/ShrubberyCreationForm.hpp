@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 21:28:59 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 22:22:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:16:47 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class	ShrubberyCreationForm: public AForm
 		ShrubberyCreationForm(std::string target);
 
 		bool	beSigned(const Bureaucrat & bureaucrat);
-		void	execute(const Bureaucrat & executor) const;
+		bool	execute(const Bureaucrat & executor) const;
 
 	private:
 		bool				isSigned;

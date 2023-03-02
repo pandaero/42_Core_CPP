@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 21:47:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 23:57:18 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:19:58 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,16 @@ bool	ShrubberyCreationForm::beSigned(const Bureaucrat & bureaucrat)
 }
 
 //Executes the form if executor is allowed.
-void	ShrubberyCreationForm::execute(const Bureaucrat & executor) const
+bool	ShrubberyCreationForm::execute(const Bureaucrat & executor) const
 {
 	if (executor.getGrade() <= execGrade)
+	{
 		createShrubbery(target);
+		return (true);
+	}
 	else
+	{
 		std::cout << "Could not execute form as " << executor.getName() << " is not of high enough grade" << std::endl;
+		return (false);
+	}
 }

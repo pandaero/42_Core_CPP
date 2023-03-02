@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 21:28:56 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 00:09:03 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:16:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class	PresidentialPardonForm: public AForm
 		PresidentialPardonForm(std::string target);
 
 		bool	beSigned(const Bureaucrat & bureaucrat);
-		void	execute(const Bureaucrat & executor) const;
+		bool	execute(const Bureaucrat & executor) const;
 
 	private:
 		bool				isSigned;

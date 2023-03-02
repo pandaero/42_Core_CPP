@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:46:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 22:14:36 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:23:24 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,18 @@ void	Bureaucrat::signForm(AForm & form)
 		std::cout << name << " signed " << form.getName() << std::endl;
 	else
 		std::cout << name << " couldn\'t sign " << form.getName() << " because the signing grade is higher than his." << std::endl;
+}
+
+//Have the bureaucrat execute a form.
+void	Bureaucrat::executeForm(AForm & form)
+{
+	bool	status;
+
+	status = form.execute(*this);
+	if (status)
+		std::cout << name << " executed " << form.getName() << std::endl;
+	else
+		std::cout << name << " couldn\'t execute " << form.getName() << " because the execution grade is higher than his." << std::endl;
 }
 
 //Exception for grade being too high.

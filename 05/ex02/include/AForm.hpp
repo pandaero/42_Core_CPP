@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:49:27 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 22:16:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:20:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class	AForm
 		int			getExecGrade() const;
 
 		virtual bool	beSigned(const Bureaucrat & bureaucrat) = 0;
-		virtual void	execute(const Bureaucrat & executor) const = 0;
+		virtual bool	execute(const Bureaucrat & executor) const = 0;
 
 		std::logic_error	GradeTooHighException();
 		std::logic_error	GradeTooLowException();

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:24:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 00:12:46 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:21:59 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main()
 	std::cout << "Having Jebediah sign form A" << std::endl;
 	jeb.signForm(a);
 	std::cout << "Having Robert execute form B" << std::endl;
-	b.execute(bob);
+	bob.executeForm(b);
 	std::cout << "Having Jebediah execute form A" << std::endl;
-	a.execute(jeb);
+	jeb.executeForm(a);
 
 	std::cout << "----- ----- ----- ----- -----" << std::endl;
 
@@ -59,15 +59,15 @@ int	main()
 	std::cout << "Having Robert sign form C" << std::endl;
 	bob.signForm(*c);
 	std::cout << "Having Robert execute form C" << std::endl;
-	c->execute(bob);
+	bob.executeForm(*c);
 	std::cout << "Having Nick sign form D" << std::endl;
 	nick.signForm(*d);
 	std::cout << "Having Nick execute form D" << std::endl;
-	d->execute(nick);
+	nick.executeForm(*d);
 	std::cout << "Having Nick sign form E" << std::endl;
 	nick.signForm(*e);
 	std::cout << "Having Nick execute form E" << std::endl;
-	e->execute(nick);
+	nick.executeForm(*e);
 
 	delete c;
 	delete d;
@@ -86,9 +86,9 @@ int	main()
 	std::cout << "Having Nick sign form G" << std::endl;
 	nick.signForm(g);
 	std::cout << "Having Jebediah execute form F" << std::endl;
-	f.execute(jeb);
+	jeb.executeForm(f);
 	std::cout << "Having Nick execute form G" << std::endl;
-	g.execute(nick);
+	nick.executeForm(g);
 
 	std::cout << "----- ----- ----- ----- -----" << std::endl;
 

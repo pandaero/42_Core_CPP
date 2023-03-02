@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 22:38:35 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 00:11:36 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 00:18:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,16 @@ bool	PresidentialPardonForm::beSigned(const Bureaucrat & bureaucrat)
 }
 
 //Executes the form if executor is allowed.
-void	PresidentialPardonForm::execute(const Bureaucrat & executor) const
+bool	PresidentialPardonForm::execute(const Bureaucrat & executor) const
 {
 	if (executor.getGrade() <= execGrade)
+	{
 		std::cout << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+		return (true);
+	}
 	else
+	{
 		std::cout << "Could not execute form as " << executor.getName() << " is not of high enough grade" << std::endl;
+		return (false);
+	}
 }
