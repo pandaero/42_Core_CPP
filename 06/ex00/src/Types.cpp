@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 17:59:59 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:29:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ bool	isInt(std::string str)
 
 bool	isFloat(std::string str)
 {
+	if (str[str.length() - 1] != 'f')
+		return (false);
+	if (str.find('.') == std::string::npos)
+		return (false);
 	if (str.length() > 1 && (str[0] == '+' || str[0] == '-' || isdigit(str[0])))
 	{
-		for (int i = 1; i < (int) str.length(); i++)
+		for (int i = 1; i < (int) str.length() - 1; i++)
 		{
-			if (!isdigit(str[i]))
+			if (!isdigit(str[i]) && !(str[i] == '.')) 
 				return (false);
 		}
 	}
@@ -71,7 +75,7 @@ bool	isDouble(std::string str)
 	{
 		for (int i = 1; i < (int) str.length(); i++)
 		{
-			if (!isdigit(str[i]))
+			if (!isdigit(str[i]) && !(str[i] == '.'))
 				return (false);
 		}
 	}
