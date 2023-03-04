@@ -65,7 +65,8 @@ clean:
 
 # Clean all files
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME1)
+	rm -rf $(NAME2)
 
 # Re-make everything
 re: fclean all
