@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 19:09:36 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 19:41:42 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:02:57 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ typedef struct
 {
 	char	a;
 	int		b;
-	float	c;
-	double	d;
 }			Data;
 
 class	Serializer
