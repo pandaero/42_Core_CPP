@@ -1,5 +1,6 @@
-# Target executable
-NAME	:= conversion
+# Target executables
+NAME1	:= conversion
+NAME2	:= tests
 
 # Compiler 
 CC		:= c++
@@ -8,12 +9,12 @@ COPT	:= -std=c++98 #-g -fsanitize=address
 
 # Include files
 INC_DIR := include/
-INC_PRE := Bureaucrat.hpp Intern.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+INC_PRE := Types.hpp Conversions.hpp ScalarConverter.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Bureaucrat.cpp Intern.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC_PRE	:= Types.cpp Conversions.cpp ScalarConverter.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -22,24 +23,32 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-#ifeq ($(shell uname), Darwin)
+ifeq ($(shell uname), Linux)
 	BUILD_DIR	:= $(BUILD)
-#else
-#	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
-#endif
+else
+	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
+endif
 
 # RULES
-all: $(NAME) directories
+all: $(NAME1) $(NAME2) directories
 
 # Make directories
 directories: $(BUILD)
 
 # Make target executable
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(COPT) $(OBJ) -o $(NAME)
+$(NAME1): $(OBJ) $(addprefix $(BUILD), main.o)
+	$(CC) $(CFLAGS) $(COPT) $^ -o $(NAME1)
+
+# Make target executable
+$(NAME2): $(OBJ) $(addprefix $(BUILD), test.o)
+	$(CC) $(CFLAGS) $(COPT) $^ -o $(NAME2)
 
 # Make the main object file
 $(addprefix $(BUILD), main.o): $(addprefix $(SRC_DIR), main.cpp) $(INC) | $(BUILD)
+	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
+
+# Make the test object file
+$(addprefix $(BUILD), test.o): $(addprefix $(SRC_DIR), test.cpp) $(INC) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
 
 # Make required object files

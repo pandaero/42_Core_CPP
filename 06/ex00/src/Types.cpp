@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 20:29:44 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:53:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ bool	isInt(std::string str)
 
 bool	isFloat(std::string str)
 {
+	if (str == "+inff" || str == "-inff" || str == "nanf")
+		return (true);
 	if (str[str.length() - 1] != 'f')
 		return (false);
 	if (str.find('.') == std::string::npos)
@@ -71,6 +73,10 @@ bool	isFloat(std::string str)
 
 bool	isDouble(std::string str)
 {
+	if (str == "+inf" || str == "-inf" || str == "nan")
+		return (true);
+	if (str.find('.') == std::string::npos)
+		return (false);
 	if (str.length() > 1 && (str[0] == '+' || str[0] == '-' || isdigit(str[0])))
 	{
 		for (int i = 1; i < (int) str.length(); i++)
@@ -100,10 +106,10 @@ type	determineType(char ch)
 
 type	determineType(std::string str)
 {
-	if (isChar(str))
-		return (CHAR);
 	if (isInt(str))
 		return (INT);
+	if (isChar(str))
+		return (CHAR);
 	if (isFloat(str))
 		return (FLOAT);
 	if (isDouble(str))
