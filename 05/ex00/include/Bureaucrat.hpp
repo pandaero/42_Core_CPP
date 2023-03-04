@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:36:46 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 17:40:56 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 23:30:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,18 @@ class	Bureaucrat
 		void		increaseGrade();
 		void		decreaseGrade();
 
-		std::invalid_argument	GradeTooHighException();
-		std::invalid_argument	GradeTooLowException();
+		class	GradeTooHighException: public std::exception
+		{
+			public:
+			const char *	what() const throw();
+		};
+
+		class	GradeTooLowException: public std::exception
+		{
+			public:
+			const char *	what() const throw();
+
+		};
 
 	private:
 		const std::string	name;

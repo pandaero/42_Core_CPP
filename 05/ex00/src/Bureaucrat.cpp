@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:46:24 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/02 18:08:49 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 23:30:16 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade): name(name)
 		else
 			Bureaucrat::grade = grade;
 	}
-	catch(const std::invalid_argument & except)
+	catch(const std::exception & except)
 	{
 		std::cerr << "Constructing " << name << ": " << except.what() << " Constructing to closest bounds." << std::endl;
 	}
@@ -94,7 +94,7 @@ void	Bureaucrat::increaseGrade()
 		else
 			grade--;
 	}
-	catch (const std::invalid_argument & except)
+	catch (const std::exception & except)
 	{
 		std::cout << except.what() << std::endl;
 	}
@@ -109,24 +109,18 @@ void	Bureaucrat::decreaseGrade()
 		else
 			grade++;
 	}
-	catch (const std::invalid_argument & except)
+	catch (const std::exception & except)
 	{
 		std::cout << except.what() << std::endl;
 	}
 }
 
-//Exception for grade being too high.
-std::invalid_argument	Bureaucrat::GradeTooHighException()
+const char *	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	std::invalid_argument	arg("Invalid: grade too high.");
-
-	return (arg);
+	return ("Invalid: grade too high.");
 }
 
-//Exception for grade being too low.
-std::invalid_argument	Bureaucrat::GradeTooLowException()
+const char *	Bureaucrat::GradeTooLowException::what() const throw()
 {
-	std::invalid_argument	arg("Invalid: grade too low.");
-
-	return (arg);
+	return ("Invalid: grade too low.");
 }
