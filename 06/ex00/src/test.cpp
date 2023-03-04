@@ -6,13 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 16:02:50 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 19:01:09 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:01:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Types.hpp"
 
-int main ()
+int	main ()
 {
 	std::cout << "----- ----- -----  INT TEST   ----- ----- -----" << std::endl;
 
