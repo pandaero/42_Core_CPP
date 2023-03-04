@@ -6,12 +6,20 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:22:42 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 13:39:01 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:22:21 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONVERSIONS
 # define CONVERSIONS
+
+# include <string>
+
+//Conversions from string.
+char	strToChar(std::string);
+int		strToInt(std::string);
+float	strToFloat(std::string);
+double	strToDouble(std::string);
 
 //Conversions from char.
 int		charToInt(char);

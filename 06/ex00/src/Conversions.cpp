@@ -6,13 +6,19 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 13:39:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 14:12:58 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:50:05 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Conversions.hpp"
 
 // ==================================== CHAR ===================================
+
+char	strToChar(std::string literal)
+{
+	char	ch = literal[0];
+	return (ch);
+}
 
 int	charToInt(char ch)
 {
@@ -34,6 +40,12 @@ double	charToDouble(char ch)
 
 // ==================================== INT ====================================
 
+int	strToInt(std::string literal)
+{
+	int	num = stoi(literal);
+	return (num);
+}
+
 char	intToChar(int num)
 {
 	char	ch = static_cast<char>(num);
@@ -54,6 +66,12 @@ double	intToDouble(int num)
 
 // =================================== FLOAT ===================================
 
+float	strToFloat(std::string literal)
+{
+	float	num = stof(literal);
+	return (num);
+}
+
 char	floatToChar(float num)
 {
 	char	ch = static_cast<char>(num);
@@ -73,6 +91,12 @@ double	floatToDouble(float num)
 }
 
 // =================================== DOUBLE ==================================
+
+double	strToDouble(std::string literal)
+{
+	double	num = stod(literal);
+	return (num);
+}
 
 char	doubleToChar(double num)
 {

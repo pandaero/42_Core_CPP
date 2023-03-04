@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 13:53:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:00:02 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ bool	isInt(std::string str)
 
 bool	isFloat(std::string str)
 {
-	if (str == "+inff" || str == "-inff" || str == "nanf")
+	if (str == "+inff" || str == "-inff" || str == "inff" || str == "nanf")
 		return (true);
 	if (str[str.length() - 1] != 'f')
+		return (false);
+	if (!isdigit(str[str.length() - 2]))
 		return (false);
 	if (str.find('.') == std::string::npos)
 		return (false);
@@ -73,9 +75,11 @@ bool	isFloat(std::string str)
 
 bool	isDouble(std::string str)
 {
-	if (str == "+inf" || str == "-inf" || str == "nan")
+	if (str == "+inf" || str == "-inf" || str == "inf" || str == "nan")
 		return (true);
 	if (str.find('.') == std::string::npos)
+		return (false);
+	if (!isdigit(str[str.length() - 1]))
 		return (false);
 	if (str.length() > 1 && (str[0] == '+' || str[0] == '-' || isdigit(str[0])))
 	{
