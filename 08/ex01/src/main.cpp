@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 22:46:39 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:54:40 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,21 @@ int	main()
 		std::cout << "Longest span: " << a.longestSpan() << std::endl;
 	}
 
+	std::cout << "----- ----- ----- -----" << std::endl;
+	
+	{
+		Span	sp = Span(5);
+
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	
 	std::cout << "----- ----- ----- -----" << std::endl;
 
 	return (0);
