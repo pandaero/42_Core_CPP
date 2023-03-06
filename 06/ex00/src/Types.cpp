@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 11:24:40 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:37:11 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,10 @@ type	determineType(char ch)
 
 type	determineType(std::string str)
 {
-	if (isInt(str))
-		return (INT);
 	if (isChar(str))
 		return (CHAR);
+	if (isInt(str))
+		return (INT);
 	if (isFloat(str))
 		return (FLOAT);
 	if (isDouble(str))

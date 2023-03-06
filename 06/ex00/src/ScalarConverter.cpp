@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:17:47 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 18:58:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:38:58 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static std::string	charConvert(std::string str)
 			break;
 		case INT:
 			if (isprint(strToInt(str)))
-				out << intToChar(strToInt(str));
+				out << "\'" << intToChar(strToInt(str)) << "\'";
 			else if (strToInt(str) >= 0 && strToInt(str) <= 255)
 				out << "non-displayable";
 			else
