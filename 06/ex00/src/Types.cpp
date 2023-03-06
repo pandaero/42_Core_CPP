@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 19:00:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:24:40 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	isInt(std::string str)
 	}
 	try
 	{
-		int num = std::stoi(str, NULL);
+		int num = std::atoi(str.c_str());
 		(void) num;
 	}
 	catch (std::exception & exc)
@@ -62,7 +62,7 @@ bool	isFloat(std::string str)
 	}
 	try
 	{
-		int num = std::stof(str, NULL);
+		double num = std::atof(str.c_str());
 		(void) num;
 	}
 	catch (std::exception & exc)
@@ -91,7 +91,7 @@ bool	isDouble(std::string str)
 	}
 	try
 	{
-		double num = std::stod(str, NULL);
+		double num = std::atof(str.c_str());
 		(void) num;
 	}
 	catch (std::exception & exc)

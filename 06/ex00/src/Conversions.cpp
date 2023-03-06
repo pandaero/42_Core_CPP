@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 13:39:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 18:50:05 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:26:52 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double	charToDouble(char ch)
 
 int	strToInt(std::string literal)
 {
-	int	num = stoi(literal);
+	int	num = std::atoi(literal.c_str());
 	return (num);
 }
 
@@ -68,7 +68,7 @@ double	intToDouble(int num)
 
 float	strToFloat(std::string literal)
 {
-	float	num = stof(literal);
+	float	num = static_cast<float>(std::atof(literal.c_str()));
 	return (num);
 }
 
@@ -94,7 +94,7 @@ double	floatToDouble(float num)
 
 double	strToDouble(std::string literal)
 {
-	double	num = stod(literal);
+	double	num = std::atof(literal.c_str());
 	return (num);
 }
 
