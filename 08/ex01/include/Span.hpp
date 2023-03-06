@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:27:59 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 22:42:28 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:44:08 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <exception>
 # include <cstdlib>
 # include <ctime>
+# include <cstdarg>
 
 class	Span
 {
@@ -32,6 +33,9 @@ class	Span
 		Span(unsigned int n);
 
 		void			addNumber(int);
+		void			addNumbers(int, ...);
+		void			addVec(std::vector<int>::const_iterator, std::vector<int>::const_iterator);
+		void			addRandom(int);
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 

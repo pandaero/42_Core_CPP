@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 22:54:40 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:53:42 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,40 @@ int	main()
 	
 	std::cout << "----- ----- ----- -----" << std::endl;
 
+	{
+		Span	a = Span(5);
+
+		a.addNumbers(6, 1, 2, 3, 4, 5, 100);
+		std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << a.longestSpan() << std::endl;
+	}
+
+	std::cout << "----- ----- ----- -----" << std::endl;
+	
+	{
+		Span	a = Span(5);
+
+		a.addRandom(6);
+		std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << a.longestSpan() << std::endl;		
+	}
+
+	std::cout << "----- ----- ----- -----" << std::endl;
+	
+	{
+		std::vector<int>	vec;
+		Span				a = Span(4);
+		
+		//Fill vector with odd numbers 1 to 7 (attempt 9).
+		for (size_t i = 0; i < 5; i++)
+			vec.push_back(2 * i + 1);		
+
+		a.addVec(vec.begin(), vec.end());
+		std::cout << "Shortest span: " << a.shortestSpan() << std::endl;
+		std::cout << "Longest span: " << a.longestSpan() << std::endl;		
+	}
+
+	std::cout << "----- ----- ----- -----" << std::endl;
+	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:27:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 22:40:13 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:47:19 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,72 @@ void	Span::addNumber(int num)
 			throw overflowException();
 		else
 			vector.push_back(num);
+	}
+	catch (std::exception & exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+}
+
+void	Span::addNumbers(int no, ...)
+{
+	va_list	args;
+
+	va_start(args, no);
+	try
+	{
+		for (int i = 0; i < no; i++)
+		{
+			if (vector.size() == size)
+			{
+				va_end(args);
+				throw overflowException();
+			}
+			else
+				vector.push_back(va_arg(args, int));
+		}
+		va_end(args);
+	}
+	catch (std::exception & exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+}
+
+void	Span::addVec(std::vector<int>::const_iterator first, std::vector<int>::const_iterator last)
+{
+	std::vector<int>::const_iterator	iter;
+
+	iter = first;
+	while (iter != last)
+	{
+		try
+		{
+			if (vector.size() == size)
+				throw overflowException();
+			else
+				vector.push_back(*iter);
+		}
+		catch (std::exception & exception)
+		{
+			std::cerr << exception.what() << std::endl;
+		}
+		iter++;
+	}
+}
+
+void	Span::addRandom(int qty)
+{
+	std::srand(std::time(0));
+	try
+	{
+		for (int i = 0; i < qty; i++)
+		{
+			if (vector.size() == size)
+				throw overflowException();
+			else
+				vector.push_back(std::rand());
+		}
 	}
 	catch (std::exception & exception)
 	{
