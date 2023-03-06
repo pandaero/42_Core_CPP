@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:27:54 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/05 23:12:25 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 01:25:51 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Array<T>::Array(const Array & other):
 {
 	arr = new T[other.len];
 
-	for (int i = 0; i < other.len; i++)
+	for (int i = 0; i < (int) other.len; i++)
 		arr[i] = other.arr[i];
 }
 
