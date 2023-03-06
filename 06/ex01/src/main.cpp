@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 19:59:24 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:01:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ int	main()
 	strct->a = 'c';
 	strct->b = 3;
 
-	Serializer	here;
-
 	std::cout << "Serialising packet..." << std::endl;
 
-	uintptr_t raw = here.serialize(strct);
+	uintptr_t raw = Serializer::serialize(strct);
 
 	delete strct;
 
 	std::cout << "Deserialising packet..." << std::endl;
 
-	Data * rcv = here.deserialize(raw);
+	Data * rcv = Serializer::deserialize(raw);
 
 	std::cout << "Received contents:" << std::endl;
 	std::cout << "a: " << "\'" << rcv->a << "\'" << std::endl;
