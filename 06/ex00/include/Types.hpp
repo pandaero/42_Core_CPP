@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:37 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 18:00:02 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:23:22 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TYPES
 
 # include <string>
+# include <cstdlib>
 # include <cctype>
 # include <stdexcept>
 # include <iostream>

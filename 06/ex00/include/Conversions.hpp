@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:22:42 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/04 15:22:21 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:25:05 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONVERSIONS
 
 # include <string>
+# include <cstdlib>
 
 //Conversions from string.
 char	strToChar(std::string);
