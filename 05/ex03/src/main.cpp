@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:24:01 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/03 01:28:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:08:00 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ int	main()
 	bob.executeForm(*shrub);
 	bob.executeForm(*robo);
 	bob.executeForm(*pres);
+
+	delete shrub;
+	delete robo;
+	delete pres;
 
 	std::cout << "----- ----- ----- ----- -----" << std::endl;
 
