@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:31:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 11:37:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:08:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,24 @@
 bool	isChar(std::string str)
 {
 	if (str.length() == 1)
+	{
+		if (isdigit(str[0]))
+			return (false);
 		return (true);
+	}
 	return (false);
 }
 
 bool	isInt(std::string str)
 {
+	if (str.length() > 1)
+	{
+		for (int i = 1; i < (int) str.length(); i++)
+		{
+			if (!isdigit(str[i]))
+				return (false);
+		}
+	}
 	if (str.length() > 1 && (str[0] == '+' || str[0] == '-' || isdigit(str[0])))
 	{
 		for (int i = 1; i < (int) str.length(); i++)
