@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/06 15:29:07 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:32:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main()
 		{
 			std::cerr << exc.what() << std::endl;
 		}
+	}
 
 	std::cout << "----- ----- ----- -----" << std::endl;
 
