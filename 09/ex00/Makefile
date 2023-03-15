@@ -25,12 +25,12 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE := Date.hpp ExchangeData.hpp
+INC_PRE := Date.hpp ExchangeData.hpp BitcoinExchange.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Date.cpp ExchangeData.cpp
+SRC_PRE	:= main.cpp Date.cpp ExchangeData.cpp BitcoinExchange.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files

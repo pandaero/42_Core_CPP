@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:26:37 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 23:02:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:33:42 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ ExchangeData::ExchangeData(std::string input):
 	}
 	catch (std::exception & exc)
 	{
-		std::cerr << exc.what() << std::endl;
+		// std::cerr << exc.what() << std::endl;
 	}
 }
 

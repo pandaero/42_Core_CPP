@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 22:21:26 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:37:19 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@
 
 #include "../include/Date.hpp"
 #include "../include/ExchangeData.hpp"
+#include "../include/BitcoinExchange.hpp"
 
 #include <iostream>
 #include <set>
+
+
+
+#include <cstdlib>
+#include <unistd.h>
 
 int	main()
 {
@@ -107,15 +113,32 @@ int	main()
 		Date	pre(2010, 04, 28);
 
 		ExchangeData	element(exact, 42);
-		ExchangeData	search(Date(close), 0);
+		ExchangeData	search(Date(pre), 0);
 
 		set.insert(element);
 
 		if (set.find(search) == set.end())
 		{
+			if (search.getDate() < set.begin()->getDate())
+			{
+				std::cout << "Date before first entry" << std::endl;
+			}
 			while (set.find(search) == set.end())
 			{
-
+				if (set.find(search) != set.end())
+				{
+					std::cout << "Closest Data found. Value: " << set.find(search)->getValue() << std::endl;
+					break;
+				}
+				sleep(1);
+				std::cout << "Before: " << search.getDate() << std::endl;
+				Date	tochange = search.getDate();
+				--tochange;
+				ExchangeData	newSearch(Date(tochange), 0);
+				search = newSearch;
+				std::cout << "Trying: " << search.getDate() << std::endl;
+				if (search.getDate() != set.begin()->getDate())
+					std::cout << "Closest Data found. Value: " << set.find(search)->getValue() << std::endl;
 			}
 			std::cout << "Data not found in set." << std::endl;
 		}
@@ -125,36 +148,23 @@ int	main()
 	
 	std::cout << "----- ----- ----- -----" << std::endl;
 
-	// {
-	// 	std::cout << "Database reading" << std::endl;
+	{
+		std::string		dataFile("data.csv");
+		BitcoinExchange	exchange(dataFile);
 
-	// 	std::string		dataFile("data.csv");
+		std::cout << "Loaded Database." << std::endl;
 
-	// 	BitcoinExchange	exchange(dataFile);
-
-	// 	try
-	// 	{
-	// 		std::cout << exchange.getValueAtDate("2010-10-10") << std::endl;
-	// 		std::cout << exchange.getValueAtDate("2010-10-25") << std::endl;
-	// 		std::cout << exchange.getValueAtDate("2010-08-01") << std::endl;
-	// 	}
-	// 	catch (std::exception & exc)
-	// 	{
-	// 		std::cerr << exc.what() << std::endl;
-	// 	}
-		
-	// 	// std::cout << exchange.getValueAtDate("2010-08-29") << std::endl;
-		
-	// 	// std::cout << exchange.getValueAtDate("2010-09-15") << std::endl;
-
-	// 	// std::multiset<ExchangeData>::iterator	it;
-	// 	// it = data.begin();
-	// 	// for (int i = 0; i < 10; ++i)
-	// 	// {
-	// 	// 	std::cout << it->getDate() << " : " << it->getValue() << std::endl;
-	// 	// 	it++;
-	// 	// }
-	// }
+		try
+		{
+			std::cout << exchange.findValue(Date("2010-11-13")) << std::endl;
+			std::cout << exchange.findValue(Date("2010-10-25")) << std::endl;
+			std::cout << exchange.findValue(Date("2009-01-02")) << std::endl;
+		}
+		catch (std::exception & exc)
+		{
+			std::cerr << exc.what() << std::endl;
+		}
+	}
 
 	std::cout << "----- ----- ----- -----" << std::endl;
 

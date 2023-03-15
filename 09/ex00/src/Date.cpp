@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:03:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 22:21:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:46:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ Date &	Date::operator=(const Date & other)
 {
 	if (this != &other)
 	{
-		new (this) Date(other._year, other._month, other._day);
+		new (this) Date(other);
 	}
 	return (*this);
 }
