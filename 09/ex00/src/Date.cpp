@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:03:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 20:44:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:21:11 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,167 @@ bool	Date::operator!=(const Date & rhs) const
 	return (!(*this == rhs));
 }
 
+Date	Date::operator++()
+{
+	Date	copy = *this;
+	int		febdays = 28;
+
+	if (_year % 4 == 0)
+		febdays = 29;
+	switch (_month)
+	{
+		case 1: case 3: case 5: case 7: case 8: case 10:
+			if (_day == 31)
+				new (this) Date(_year, _month + 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			break;
+		case 4: case 6: case 9: case 11:
+			if (_day == 30)
+				new (this) Date(_year, _month + 1, _day + 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			break;
+		case 2:
+			if (_day == febdays)
+				new (this) Date(_year, _month + 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			break;
+		case 12:
+			if (_day == 31)
+				new (this) Date(_year + 1, 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			break;
+		default:
+			throw invalidDateException();
+	}
+	return (copy);
+}
+
+Date &	Date::operator++(int)
+{
+	int		febdays = 28;
+
+	if (_year % 4 == 0)
+		febdays = 29;
+	switch (_month)
+	{
+		case 1: case 3: case 5: case 7: case 8: case 10:
+			if (_day == 31)
+				new (this) Date(_year, _month + 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			return (*this);
+			break;
+		case 4: case 6: case 9: case 11:
+			if (_day == 30)
+				new (this) Date(_year, _month + 1, _day + 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			return (*this);
+			break;
+		case 2:
+			if (_day == febdays)
+				new (this) Date(_year, _month + 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			return (*this);
+			break;
+		case 12:
+			if (_day == 31)
+				new (this) Date(_year + 1, 1, 1);
+			else
+				new (this) Date(_year, _month, _day + 1);
+			return (*this);
+			break;
+		default:
+			throw invalidDateException();
+	}
+}
+
+Date	Date::operator--()
+{
+	Date	copy = *this;
+	int		febdays = 28;
+
+	if (_year % 4 == 0)
+		febdays = 29;
+	switch (_month)
+	{
+		case 1: 
+			if (_day == 1)
+				new (this) Date(_year - 1, 12, 31);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			break;
+		case 3: 
+			if (_day == 1)
+				new (this) Date(_year, 2, febdays);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			break;
+		case 5: case 7: case 10: case 12:
+			if (_day == 1)
+				new (this) Date(_year, _month - 1, 30);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			break;
+		case 2: case 4: case 6: case 8: case 9: case 11:
+			if (_day == 1)
+				new (this) Date(_year, _month - 1, 31);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			break;
+		default:
+			throw invalidDateException();
+	}
+	return (copy);
+}
+
+Date &	Date::operator--(int)
+{
+	Date	copy = *this;
+	int		febdays = 28;
+
+	if (_year % 4 == 0)
+		febdays = 29;
+	switch (_month)
+	{
+		case 1: 
+			if (_day == 1)
+				new (this) Date(_year - 1, 12, 31);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			return (*this);
+			break;
+		case 3: 
+			if (_day == 1)
+				new (this) Date(_year, 2, febdays);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			return (*this);
+			break;
+		case 5: case 7: case 10: case 12:
+			if (_day == 1)
+				new (this) Date(_year, _month - 1, 30);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			return (*this);
+			break;
+		case 2: case 4: case 6: case 8: case 9: case 11:
+			if (_day == 1)
+				new (this) Date(_year, _month - 1, 31);
+			else
+				new (this) Date(_year, _month, _day - 1);
+			return (*this);
+			break;
+		default:
+			throw invalidDateException();
+	}
+}
+
 int	Date::getYear() const
 {
 	return (_year);
@@ -181,6 +342,11 @@ std::string	Date::str()
 void	Date::takeStr(std::string input)
 {
 	new (this) Date(input);
+}
+
+const char *	Date::invalidDateException::what() const throw()
+{
+	return ("Error: Date: invalid.");
 }
 
 const char *	Date::invalidYearException::what() const throw()

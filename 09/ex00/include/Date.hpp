@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:57:54 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 20:42:44 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:03:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,23 @@ class	Date
 		bool	operator==(const Date &) const;
 		bool	operator!=(const Date &) const;
 
+		Date	operator++();
+		Date &	operator++(int);
+		Date	operator--();
+		Date &	operator--(int);
+
 		int	getYear() const;
 		int	getMonth() const;
 		int	getDay() const;
 
 		std::string	str();
 		void		takeStr(std::string);
+
+	class	invalidDateException: public std::exception
+	{
+		public:
+			const char *	what() const throw();
+	};
 
 	class	invalidYearException: public std::exception
 	{
