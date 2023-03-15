@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:26:37 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 13:29:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:32:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ bool	ExchangeData::operator<(const ExchangeData & rhs) const
 	std::string	ryearStr, rmonthStr, rdayStr;
 	int			ryear, rmonth, rday;
 
-	ryearStr = _date.substr(0,3);
-	rmonthStr = _date.substr(5,7);
-	rdayStr = _date.substr(8,10);
+	ryearStr = rhs._date.substr(0,3);
+	rmonthStr = rhs._date.substr(5,7);
+	rdayStr = rhs._date.substr(8,10);
 	ryear = std::atoi(ryearStr.c_str());
 	rmonth = std::atoi(rmonthStr.c_str());
 	rday = std::atoi(rdayStr.c_str());
