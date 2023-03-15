@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:03:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 19:44:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:44:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <cctype>
 #include <sstream>
+#include <iomanip>
 
 bool	isDateFormat(std::string str)
 {
@@ -33,6 +34,14 @@ bool	isDateFormat(std::string str)
 			return (true);
 	}
 	return (false);
+}
+
+std::ostream &	operator<<(std::ostream & outStream, const Date & date)
+{
+	outStream << std::setfill('0') << std::setw(4) << date.getYear();
+	outStream << '-' << std::setfill('0') << std::setw(2) << date.getMonth();
+	outStream << '-' << std::setfill('0') << std::setw(2) << date.getDay();
+	return (outStream);
 }
 
 Date::Date():
@@ -58,24 +67,45 @@ Date::~Date()
 
 Date &	Date::operator=(const Date & other)
 {
-	if (this == &other)
+	if (this != &other)
 	{
 		new (this) Date(other._year, other._month, other._day);
 	}
 	return (*this);
 }
 
-Date::Date(int year, int month, int date):
+Date::Date(int year, int month, int day):
 	_year(year),
 	_month(month),
-	_date(date)
+	_day(day)
 {
 	if (year < -2000 || year > 3000)
 		throw invalidYearException();
 	if (month < 1 || month > 12)
 		throw invalidMonthException();
-	if (date < 1 || date > 31)
+	if (day < 1 || day > 31)
 		throw invalidDayException();
+}
+
+Date::Date(std::string input):
+	_year(0),
+	_month(1),
+	_day(1)
+{
+	size_t	commaPos = input.find(',');
+
+	std::string	dateStr = input.substr(0, commaPos);
+	std::string	valueStr = input.substr(commaPos + 1, input.length());
+
+	std::string yearStr = dateStr.substr(0, 4);
+	std::string monthStr = dateStr.substr(5, 6);
+	std::string dayStr = dateStr.substr(8, 9);
+
+	int	year = std::atoi(yearStr.c_str());
+	int	month = std::atoi(monthStr.c_str());
+	int	day = std::atoi(dayStr.c_str());
+
+	new (this) Date(year, month, day);
 }
 
 bool	Date::operator<(const Date & rhs) const
@@ -88,7 +118,7 @@ bool	Date::operator<(const Date & rhs) const
 			return (true);
 		if (_month == rhs._month)
 		{
-			if (_day < rhs._month)
+			if (_day < rhs._day)
 				return (true);
 		}
 	}
@@ -141,9 +171,16 @@ std::string	Date::str()
 {
 	std::stringstream	out;
 
-	out << _year << '-' << _month << '-' << _day;
+	out << std::setfill('0') << std::setw(4) << _year;
+	out << '-' << std::setfill('0') << std::setw(2) << _month;
+	out << '-' << std::setfill('0') << std::setw(2) << _day;
 
 	return (out.str());
+}
+
+void	Date::takeStr(std::string input)
+{
+	new (this) Date(input);
 }
 
 const char *	Date::invalidYearException::what() const throw()

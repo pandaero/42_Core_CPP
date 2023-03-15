@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:57:54 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 19:42:10 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:42:44 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 # define DATE_HPP
 
 # include <string>
+# include <ostream>
 # include <exception>
 
 bool	isDateFormat(std::string);
+
+class	Date;
+
+std::ostream &	operator<<(std::ostream & outStream, const Date & date);
 
 class	Date
 {
@@ -32,6 +37,7 @@ class	Date
 		Date &	operator=(const Date &);
 
 		Date(int, int, int);
+		Date(std::string);
 
 		bool	operator<(const Date &) const;
 		bool	operator>(const Date &) const;
@@ -45,6 +51,7 @@ class	Date
 		int	getDay() const;
 
 		std::string	str();
+		void		takeStr(std::string);
 
 	class	invalidYearException: public std::exception
 	{
