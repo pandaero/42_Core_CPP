@@ -6,6 +6,15 @@ CC		:= c++
 CFLAGS	:= -Wall -Werror -Wextra
 COPT	:= -std=c++98
 
+# Turn on different tests. Usage: make DATE=1 DATA=1
+ifeq ($(DATE), 1)
+	DEFS += -D DATE=1
+endif
+ifeq ($(DATA), 1)
+	DEFS += -D DATA=1
+endif
+
+
 # Debug and leak-checking options. Usage: make DEBUG=1 LEAKS=1
 ifeq ($(DEBUG), 1)
 	COPT += -g
@@ -16,12 +25,12 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE := ExchangeData.hpp
+INC_PRE := Date.hpp ExchangeData.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp ExchangeData.cpp
+SRC_PRE	:= main.cpp Date.cpp ExchangeData.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -42,13 +51,16 @@ all: $(NAME) directories
 # Make directories
 directories: $(BUILD)
 
+run: all
+	./$(NAME)
+
 # Make target executable
 $(NAME): $(OBJ) $(addprefix $(BUILD), main.o)
 	$(CC) $(CFLAGS) $(COPT) $^ -o $(NAME)
 
 # Make the main object file
 $(addprefix $(BUILD), main.o): $(addprefix $(SRC_DIR), main.cpp) $(INC) | $(BUILD)
-	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
+	$(CC) $(CFLAGS) $(COPT) $(DEFS) -c $< -o $@
 
 # Make required object files
 $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR), %.hpp) | $(BUILD)
@@ -70,4 +82,4 @@ fclean: clean
 re: fclean all
 
 # State rules as non-files
-.PHONY: all directories clean fclean re
+.PHONY: run all directories clean fclean re
