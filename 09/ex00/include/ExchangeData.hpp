@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:26:43 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 12:52:56 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:27:26 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EXCHANGEDATA_HPP
 
 # include <string>
+# include <exception>
 
 bool	isDateFormat(std::string);
 
@@ -31,6 +32,13 @@ class	ExchangeData
 
 		ExchangeData(std::string, double);
 		ExchangeData(std::string);
+
+		bool	operator<(const ExchangeData &) const;
+		bool	operator>(const ExchangeData &) const;
+		bool	operator<=(const ExchangeData &) const;
+		bool	operator>=(const ExchangeData &) const;
+		bool	operator==(const ExchangeData &) const;
+		bool	operator!=(const ExchangeData &) const;
 
 	class	invalidDateException: public std::exception
 	{

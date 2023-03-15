@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 12:36:59 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:30:34 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,24 @@ int	main()
 		while (std::getline(databaseFile, databaseBuffer))
 		{
 			std::stringstream	databaseBufferStream(databaseBuffer);
-			std::string			interpret, date;
-			double				value;
+			std::string			interpret;
 
 			databaseBufferStream >> interpret;
 			if (interpret == "date,exchange_rate")
 				continue;
 
-			size_t	commaPos = interpret.find(',');
-
-			date = interpret.substr(0, commaPos);
-			value = std::atof(interpret.substr(commaPos + 1, interpret.length()).c_str());
-
-			if (!isDateFormat(date))
+			try
 			{
-				std::cerr << "Error: Database: invalid date" << std::endl;
-				return (1);
+				ExchangeData	member(interpret);
+				data.insert(member);
 			}
-			if (value < 0 || value > 1000)
+			catch (std::exception & exc)
 			{
-				std::cerr << "Error: Database: value out of range." << std::endl;
+				std::cerr << exc.what() << std::endl;
 				return (1);
 			}
 
 			std::cout << "Line: " << interpret << std::endl;
-			std::cout << "Date: " << date << ", value: " << value << std::endl;
 			std::cin.ignore();
 		}
 
