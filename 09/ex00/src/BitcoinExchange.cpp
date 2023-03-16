@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 23:31:41 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:27:37 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ BitcoinExchange::BitcoinExchange(std::string dataFileName)
 	
 	try
 	{
-		dataFile.open(dataFileName);
+		dataFile.open(dataFileName.c_str());
 	}
 	catch (std::exception & exc)
 	{
