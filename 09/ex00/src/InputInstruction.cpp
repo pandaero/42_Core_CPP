@@ -90,10 +90,27 @@ InputInstruction::InputInstruction(std::string input):
 	catch (Date::invalidDateException & exc)
 	{
 		new (this) InputInstruction(Date(), 0, invalidDateException().what());
-		throw invalidDateException();
 	}
-	catch (std::exception & exc)
+	catch (Date::invalidMonthException & exc)
 	{
+		new (this) InputInstruction(Date(), 0, invalidDateException().what());
+	}
+	catch (Date::invalidDayException & exc)
+	{
+		new (this) InputInstruction(Date(), 0, invalidDateException().what());
+	}
+	catch (Date::invalidYearException & exc)
+	{
+		new (this) InputInstruction(Date(), 0, invalidDateException().what());
+	}
+	catch (highValueException & exc)
+	{
+		new (this) InputInstruction(Date(), 0, exc.what());
+		// std::cerr << exc.what() << std::endl;
+	}
+	catch (lowValueException & exc)
+	{
+		new (this) InputInstruction(Date(), 0, exc.what());
 		// std::cerr << exc.what() << std::endl;
 	}
 }
@@ -121,34 +138,34 @@ void	InputInstruction::takeInput(std::string input)
 	}
 	catch(const invalidDateException & exc)
 	{
-		// std::cerr << exc.what() << std::endl;
+		std::cerr << exc.what() << std::endl;
 	}	
 	catch(const lowValueException & exc)
 	{
-		// std::cerr << exc.what() << std::endl;
+		std::cerr << exc.what() << std::endl;
 	}	
 	catch(const highValueException & exc)
 	{
-		// std::cerr << exc.what() << std::endl;
+		std::cerr << exc.what() << std::endl;
 	}	
 }
 
 const char *	InputInstruction::invalidInputException::what() const throw()
 {
-	return ("Error: InputInstruction: invalid value");
+	return ("Error: InputInstruction: invalid input.");
 }
 
 const char *	InputInstruction::highValueException::what() const throw()
 {
-	return ("Error: InputInstruction: invalid value");
+	return ("Error: InputInstruction: value out of bounds.");
 }
 
 const char *	InputInstruction::lowValueException::what() const throw()
 {
-	return ("Error: InputInstruction: invalid value");
+	return ("Error: InputInstruction: negative value.");
 }
 
 const char *	InputInstruction::invalidDateException::what() const throw()
 {
-	return ("Error: InputInstruction: invalid value");
+	return ("Error: InputInstruction: invalid date.");
 }

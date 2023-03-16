@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 11:22:26 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:28:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,9 +155,18 @@ int	main()
 
 	if (INPUT)
 	{
-		InputInstruction	a(Date("2000-00-00"), 3);
+		InputInstruction	a("2020-01-01 | 3.4");
+		InputInstruction	b("2020-01-01 | -3.4");
+		InputInstruction	c("2000-01-01 | 3.4");
+		InputInstruction	d("00-01-01 | 3.4");
+		InputInstruction	e("2000-01-01 | 2000.4");
 
-		std::cout << a.getDate() << a.getValue() << a.getError() << std::cout;
+		InputInstruction	check = e;
+		if (check.getError().empty())
+			std::cout << check.getDate() << " " << check.getValue();
+		else
+			std::cout << check.getError();
+		std::cout << std::endl;
 	}
 
 	std::cout << "----- ----- ----- -----" << std::endl;

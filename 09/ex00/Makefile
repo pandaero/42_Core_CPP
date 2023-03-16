@@ -41,7 +41,7 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-ifeq ($(shell uname), Linux)
+ifeq ($(shell uname), Darwin)
 	BUILD_DIR	:= $(BUILD)
 else
 	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
@@ -50,11 +50,11 @@ endif
 # RULES
 all: $(NAME) directories
 
-# Make directories
-directories: $(BUILD)
-
 run: all
 	./$(NAME)
+
+# Make directories
+directories: $(BUILD)
 
 # Make target executable
 $(NAME): $(OBJ) $(addprefix $(BUILD), main.o)
@@ -84,4 +84,4 @@ fclean: clean
 re: fclean all
 
 # State rules as non-files
-.PHONY: run all directories clean fclean re
+.PHONY: all run directories clean fclean re
