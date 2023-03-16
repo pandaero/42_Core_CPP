@@ -3,9 +3,9 @@
 
 class Data
 {
-   private:
-      std::string   _str;
-      double        _value;
+	private:
+		std::string	_str;
+		double		_value;
 
 
 	public:
@@ -27,7 +27,7 @@ class Data
 
 int main()
 {
-   std::multiset<Data>	set;
+	std::multiset<Data>	set;
 
 	Data	element("string", 42);
 
