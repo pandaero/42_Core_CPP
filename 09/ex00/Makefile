@@ -6,14 +6,16 @@ CC		:= c++
 CFLAGS	:= -Wall -Werror -Wextra
 COPT	:= -std=c++98
 
-# Turn on different tests. Usage: make DATE=1 DATA=1
+# Turn on different tests. Usage: make DATE=1 DATA=1 INPUT=1
 ifeq ($(DATE), 1)
 	DEFS += -D DATE=1
 endif
 ifeq ($(DATA), 1)
 	DEFS += -D DATA=1
 endif
-
+ifeq ($(INPUT), 1)
+	DEFS += -D INPUT=1
+endif
 
 # Debug and leak-checking options. Usage: make DEBUG=1 LEAKS=1
 ifeq ($(DEBUG), 1)
@@ -25,12 +27,12 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE := Date.hpp ExchangeData.hpp BitcoinExchange.hpp
+INC_PRE := Date.hpp ExchangeData.hpp InputInstruction.hpp BitcoinExchange.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp Date.cpp ExchangeData.cpp BitcoinExchange.cpp
+SRC_PRE	:= main.cpp Date.cpp ExchangeData.cpp InputInstruction.cpp BitcoinExchange.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -39,7 +41,7 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-ifeq ($(shell uname), Darwin)
+ifeq ($(shell uname), Linux)
 	BUILD_DIR	:= $(BUILD)
 else
 	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))

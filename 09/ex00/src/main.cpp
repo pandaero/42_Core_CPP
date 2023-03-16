@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 23:37:19 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:22:26 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@
 # define DATA 0
 #endif
 
+#ifndef	INPUT
+# define INPUT 0
+#endif
+
 #include "../include/Date.hpp"
 #include "../include/ExchangeData.hpp"
+#include "../include/InputInstruction.hpp"
 #include "../include/BitcoinExchange.hpp"
 
 #include <iostream>
@@ -146,6 +151,15 @@ int	main()
 			std::cout << "Found Data inside set! Value: " << set.find(search)->getValue() << std::endl;
 	}
 	
+	std::cout << "----- ----- ----- -----" << std::endl;
+
+	if (INPUT)
+	{
+		InputInstruction	a(Date("2000-00-00"), 3);
+
+		std::cout << a.getDate() << a.getValue() << a.getError() << std::cout;
+	}
+
 	std::cout << "----- ----- ----- -----" << std::endl;
 
 	{

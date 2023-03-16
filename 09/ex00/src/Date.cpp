@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:03:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/15 22:46:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:24:31 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <cctype>
 #include <sstream>
 #include <iomanip>
+#include <cstdlib>
 
 bool	isDateFormat(std::string str)
 {
@@ -24,7 +25,7 @@ bool	isDateFormat(std::string str)
 	{
 		if ((i == 4 || i == 7) && str[i] == '-')
 			return (true);
-		if (i >= 0 && i < 4 && isdigit(str[i]))
+		if (i < 4 && isdigit(str[i]))
 			return (true);
 		if (i > 4 && i < 7 && isdigit(str[i]))
 			return (true);
@@ -101,9 +102,9 @@ Date::Date(std::string input):
 	std::string monthStr = dateStr.substr(5, 6);
 	std::string dayStr = dateStr.substr(8, 9);
 
-	int	year = std::atoi(yearStr.c_str());
-	int	month = std::atoi(monthStr.c_str());
-	int	day = std::atoi(dayStr.c_str());
+	int	year = atoi(yearStr.c_str());
+	int	month = atoi(monthStr.c_str());
+	int	day = atoi(dayStr.c_str());
 
 	new (this) Date(year, month, day);
 }
