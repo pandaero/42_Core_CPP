@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 15:28:04 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:59:39 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #include "../include/BitcoinExchange.hpp"
 
 #include <iostream>
+#include <fstream>
 #include <set>
 
 
@@ -35,9 +36,10 @@
 #include <cstdlib>
 #include <unistd.h>
 
-int	main()
+int	main(int argc, char **argv)
 {
-	std::cout << "----- ----- ----- -----" << std::endl;
+	if (DATE)
+		std::cout << "----- ----- ----- -----" << std::endl;
 
 	if (DATE)
 	{
@@ -107,7 +109,8 @@ int	main()
 		}
 	}
 	
-	std::cout << "----- ----- ----- -----" << std::endl;
+	if (DATA)
+		std::cout << "----- ----- ----- -----" << std::endl;
 	
 	if (DATA)
 	{
@@ -151,7 +154,8 @@ int	main()
 			std::cout << "Found Data inside set! Value: " << set.find(search)->getValue() << std::endl;
 	}
 	
-	std::cout << "----- ----- ----- -----" << std::endl;
+	if (INPUT)
+		std::cout << "----- ----- ----- -----" << std::endl;
 
 	if (INPUT)
 	{
@@ -172,24 +176,57 @@ int	main()
 	std::cout << "----- ----- ----- -----" << std::endl;
 
 	{
+		if (argc != 2)
+		{
+			std::cerr << "Error: invalid number of arguments." << std::endl;
+			return (1);
+		}
+
 		std::string		dataFile("data.csv");
 		BitcoinExchange	exchange(dataFile);
 
 		std::cout << "Loaded Database." << std::endl;
+		
+		std::fstream		inFile(argv[1]);
 
-		try
+		if (inFile.bad())
 		{
-			std::cout << exchange.findValue(Date("2010-11-13")) << std::endl;
-			std::cout << exchange.findValue(Date("2010-10-25")) << std::endl;
-			std::cout << exchange.findValue(Date("2009-01-02")) << std::endl;
+			std::cerr << "Error: could not open input file." << std::endl;
+			return (1);
 		}
-		catch (std::exception & exc)
+
+		std::string	inBuffer;
+		while (getline(inFile, inBuffer))
 		{
-			std::cerr << exc.what() << std::endl;
+			if (inBuffer == "date | value")
+				continue;
+			InputInstruction	out;
+			try
+			{
+				InputInstruction	in(inBuffer);
+				out = in;
+			}
+			catch (InputInstruction::invalidInputException & exc)
+			{
+				std::cerr << exc.what() << std::endl;				
+			}
+			if (out.getError().empty())
+			{
+				try
+				{
+					std::cout << out.getDate() << " => " << out.getValue() << " = " << exchange.findValue(out.getDate()) * out.getValue();
+				}
+				catch (BitcoinExchange::datePredatesException & exc)
+				{
+				}
+			}
+			else
+			{
+				std::cout << out.getError();
+			}
+			std::cout << std::endl;
 		}
 	}
-
-	std::cout << "----- ----- ----- -----" << std::endl;
 
 	std::cout << "----- ----- ----- -----" << std::endl;
 
