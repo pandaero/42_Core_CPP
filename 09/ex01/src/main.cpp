@@ -6,15 +6,80 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:46:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 20:40:37 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 02:42:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <exception>
 #include <iostream>
+#include <sstream>
 #include <cctype>
 #include <stack>
 
-#include <unistd.h>
+bool	isValid(const char ch)
+{
+	std::string valid("0123456789+-*/");
+
+	for (size_t i = 0; i < valid.length(); ++i)
+	{
+		if (valid.find(ch) != std::string::npos)
+			return (true);
+	}
+	return (false);
+}
+
+bool	isValid(const std::string str)
+{
+	std::string valid("0123456789+-*/");
+
+	if (str.length() != 1)
+		return (false);
+
+	for (size_t i = 0; i < valid.length(); ++i)
+	{
+		if (valid.find(str[0]) != std::string::npos)
+			return (true);
+	}
+	return (false);
+}
+
+bool	containsValid(char * str)
+{
+	std::string parse(str);
+	std::string	valid(" 0123456789+-*/");
+
+	for (size_t i = 0; i < valid.length(); ++i)
+	{
+		if (parse.find(valid[i]) != std::string::npos)
+			return (true);
+	}
+	return (false);
+}
+
+// template <typename Type>
+// class	StackOperations
+// {
+// 	private:
+// 		StackOperations();
+	
+// 	public:
+// 		~StackOperations();
+
+// 	std::stack<Type>	reverseStack();
+// };
+
+template <typename Type>
+void	reverseStack(std::stack<Type> * stack)
+{
+	std::stack<Type>	out;
+
+	while (!stack->empty())
+	{
+		out.push(stack->top());
+		stack->pop();
+	}
+	*stack = out;
+}
 
 typedef enum e_tokenType
 {
@@ -76,6 +141,12 @@ class	InputToken
 		t_tokenType	getType() const;
 		int			getNum() const;
 		char		getRaw() const;
+	
+	class	invalidInputException: std::exception
+	{
+		public:
+			const char *	what() const throw();
+	};
 };
 
 InputToken::InputToken():
@@ -98,7 +169,8 @@ InputToken::~InputToken()
 InputToken::InputToken(const char ch):
 	_token(ch)
 {
-
+	if (!isValid(ch))
+		throw invalidInputException();
 }
 
 InputToken &	InputToken::operator=(const InputToken & other)
@@ -123,6 +195,11 @@ int	InputToken::getNum() const
 char	InputToken::getRaw() const
 {
 	return (_token.raw);
+}
+
+const char *	InputToken::invalidInputException::what() const throw()
+{
+	return ("Error: InputToken: invalid input.");
 }
 
 int	addStack(int start, std::stack<int> stack)
@@ -167,62 +244,106 @@ int	divideStack(int	start, std::stack<int> stack)
 
 int	main(int argc, char ** argv)
 {
-	if (argc < 2)
+	if (argc != 2)
 	{
 		std::cerr << "Error: invalid number of arguments." << std::endl;
 		return (1);
 	}
 
+	if (!containsValid(argv[1]))
 	{
-		std::stack<InputToken>	expr;
+		std::cerr << "Error." << std::endl;
+		return (1);
+	}
+
+	{
+		std::string				inputStr(argv[1]);
+		std::stack<InputToken>	expressionStack;
 		
-		for (int i = argc - 1; i > 0; --i)
+		try
 		{
-			expr.push(InputToken((*argv[i])));
+			std::stringstream	inputStream(inputStr);
+
+			std::string	buffer;
+			while (getline(inputStream, buffer, ' '))
+			{
+				if (!isValid(buffer))
+				{
+					std::cerr << "Error: invalid input" << std::endl;
+					return (1);
+				}
+				InputToken	check(buffer[0]);
+				expressionStack.push(check);
+			}
 		}
+		catch (std::exception & exc)
+		{
+			std::cerr << "Error: invalid input." << std::endl;
+			return (1);
+		}
+
+		reverseStack(&expressionStack);
 		
-		std::stack<int>	opStack;
+		std::stack<int>	operationStack;
 		
 		int	value;
-		int i = 0;
-		while (!expr.empty())
+		int	i = 0;
+		while (!expressionStack.empty())
 		{
-			InputToken		tok = expr.top();
+			InputToken	tok = expressionStack.top();
 	
+			if (i == 1 && tok.getType() != NUM)
+			{
+				std::cerr << "Error: invalid operation." << std::endl;
+				return (1);
+			}
+
+
 			switch (tok.getType())
 			{
 				case NUM:
 					if (!i)
 						value = tok.getNum();
 					else
-						opStack.push(tok.getNum());
-					expr.pop();
+						operationStack.push(tok.getNum());
+					expressionStack.pop();
 					break;
 				case PLUS:
-					value = addStack(value, opStack);
-					for (size_t j = 0; j < opStack.size(); ++j)
-						expr.pop();
+					value = addStack(value, operationStack);
+					for (size_t j = 0; j < operationStack.size(); ++j)
+					{
+						expressionStack.pop();
+						operationStack.pop();
+					}
 					break;
 				case MINUS:
-					value = subtractStack(value, opStack);
-					for (size_t j = 0; j < opStack.size(); ++j)
-						expr.pop();
+					value = subtractStack(value, operationStack);
+					for (size_t j = 0; j < operationStack.size(); ++j)
+					{
+						expressionStack.pop();
+						operationStack.pop();
+					}
 					break;
 				case MULTIPLY:
-					value = multiplyStack(value, opStack);
-					for (size_t j = 0; j < opStack.size(); ++j)
-						expr.pop();
+					value = multiplyStack(value, operationStack);
+					for (size_t j = 0; j < operationStack.size(); ++j)
+					{
+						expressionStack.pop();
+						operationStack.pop();
+					}
 					break;
 				case DIVIDE:
-					value = divideStack(value, opStack);
-					for (size_t j = 0; j < opStack.size(); ++j)
-						expr.pop();
+					value = divideStack(value, operationStack);
+					for (size_t j = 0; j < operationStack.size(); ++j)
+					{
+						expressionStack.pop();
+						operationStack.pop();
+					}
 					break;
 				default:
 					std::cerr << "Error: invalid argument/operand" << std::endl;
 					return (1);
 			}
-			std::cout << value << std::endl;
 			++i;
 		}
 		std::cout << value << std::endl;

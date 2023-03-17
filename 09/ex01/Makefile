@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/16 18:46:32 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/17 00:24:01 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-ifeq ($(shell uname), Darwin)
+ifeq ($(shell uname), Linux)
 	BUILD_DIR	:= $(BUILD)
 else
 	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
