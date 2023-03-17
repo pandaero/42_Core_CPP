@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 13:53:09 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:22:15 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ int	main(int argc, char **argv)
 			}
 			catch (InputInstruction::invalidInputException & exc)
 			{
-				std::cerr << exc.what() << std::endl;				
+				// std::cerr << exc.what() << std::endl;				
 			}
 			if (out.getError().empty())
 			{

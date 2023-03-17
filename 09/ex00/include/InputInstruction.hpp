@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:18:21 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 10:51:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:23:48 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,8 @@ class	InputInstruction
 		public:
 			const char *	what() const throw();
 	};
-
-	class	highValueException: public std::exception
-	{
-		public:
-			const char *	what() const throw();
-	};
 	
-	class	lowValueException: public std::exception
+	class	negValueException: public std::exception
 	{
 		public:
 			const char *	what() const throw();

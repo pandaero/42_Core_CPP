@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 11:27:37 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:18:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,6 @@ BitcoinExchange::BitcoinExchange(std::string dataFileName)
 		_exchangeHistory.insert(dataPoint);
 	}
 }
-
-// void	BitcoinExchange::initExchange(std::string dataFileName)
-// {
-// 	new (this) BitcoinExchange(dataFileName);
-// }
 
 double	BitcoinExchange::findValue(Date date) const
 {

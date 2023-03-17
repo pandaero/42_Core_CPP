@@ -60,13 +60,8 @@ InputInstruction::InputInstruction(Date date, double value):
 {
 	if (value < 0)
 	{
-		new (this) InputInstruction(date, value, lowValueException().what());
-		throw lowValueException();
-	}
-	if (value > 1000)
-	{
-		new (this) InputInstruction(date, value, highValueException().what());
-		throw highValueException();
+		new (this) InputInstruction(date, value, negValueException().what());
+		throw negValueException();
 	}
 }
 
@@ -103,12 +98,7 @@ InputInstruction::InputInstruction(std::string input):
 	{
 		new (this) InputInstruction(Date(), 0, invalidDateException().what());
 	}
-	catch (highValueException & exc)
-	{
-		new (this) InputInstruction(Date(), 0, exc.what());
-		// std::cerr << exc.what() << std::endl;
-	}
-	catch (lowValueException & exc)
+	catch (negValueException & exc)
 	{
 		new (this) InputInstruction(Date(), 0, exc.what());
 		// std::cerr << exc.what() << std::endl;
@@ -140,11 +130,7 @@ void	InputInstruction::takeInput(std::string input)
 	{
 		std::cerr << exc.what() << std::endl;
 	}	
-	catch(const lowValueException & exc)
-	{
-		std::cerr << exc.what() << std::endl;
-	}	
-	catch(const highValueException & exc)
+	catch(const negValueException & exc)
 	{
 		std::cerr << exc.what() << std::endl;
 	}	
@@ -155,12 +141,7 @@ const char *	InputInstruction::invalidInputException::what() const throw()
 	return ("Error: InputInstruction: invalid input.");
 }
 
-const char *	InputInstruction::highValueException::what() const throw()
-{
-	return ("Error: InputInstruction: value out of bounds.");
-}
-
-const char *	InputInstruction::lowValueException::what() const throw()
+const char *	InputInstruction::negValueException::what() const throw()
 {
 	return ("Error: InputInstruction: negative value.");
 }
