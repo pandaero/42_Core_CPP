@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:38:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 10:42:24 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:25:53 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,30 @@
 
 #include <cctype>
 
-int	addStack(int start, std::stack<int> stack)
+void	operateStack(std::stack<int> * stack, t_tokenType type)
 {
-	while (!stack.empty())
+	int	first = stack->top();
+	stack->pop();
+	int	second = stack->top();
+	stack->pop();
+	switch (type)
 	{
-		start += stack.top();
-		stack.pop();
+		case PLUS:
+			stack->push(second + first);
+			break;
+		case MINUS:
+			stack->push(second - first);
+			break;
+		case MULTIPLY:
+			stack->push(second * first);
+			break;
+		case DIVIDE:
+			stack->push(second / first);
+			break;
+		default:
+			// throw ;
+			break;
 	}
-	return (start);
-}
-
-int	subtractStack(int start, std::stack<int> stack)
-{
-	while (!stack.empty())
-	{
-		start -= stack.top();
-		stack.pop();
-	}
-	return (start);
-}
-
-int	multiplyStack(int start, std::stack<int> stack)
-{
-	while (!stack.empty())
-	{
-		start *= stack.top();
-		stack.pop();
-	}
-	return (start);
-}
-
-int	divideStack(int	start, std::stack<int> stack)
-{
-	while (!stack.empty())
-	{
-		start /= stack.top();
-		stack.pop();
-	}
-	return (start);
 }
 
 bool	isValid(const char ch)

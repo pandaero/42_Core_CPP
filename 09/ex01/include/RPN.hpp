@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:39:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 10:40:54 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:20:06 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include <stack>
 #include <string>
 #include <exception>
-
-int	addStack(int start, std::stack<int>);
-
-int	subtractStack(int start, std::stack<int>);
-
-int	multiplyStack(int start, std::stack<int>);
-
-int	divideStack(int start, std::stack<int>);
 
 bool	isValid(const char);
 
@@ -40,6 +32,8 @@ typedef enum e_tokenType
 	DIVIDE,
 	INVALID
 }	t_tokenType;
+
+void	operateStack(std::stack<int> *, t_tokenType);
 
 t_tokenType	tokType(const char);
 

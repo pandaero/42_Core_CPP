@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:46:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 13:57:55 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:16:21 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,67 +60,43 @@ int	main(int argc, char ** argv)
 		
 		std::stack<int>	operationStack;
 		
-		int	value;
 		int	i = 0;
 		while (!expressionStack.empty())
 		{
 			InputToken	tok = expressionStack.top();
 	
-			if (i == 1 && tok.getType() != NUM)
+			if ((i == 1 && tok.getType() != NUM) || \
+				(i > 0 && tok.getType() != NUM && operationStack.size() == 1))
 			{
 				std::cerr << "Error: invalid operation." << std::endl;
 				return (1);
 			}
 
-
 			switch (tok.getType())
 			{
 				case NUM:
-					if (!i)
-						value = tok.getNum();
-					else
-						operationStack.push(tok.getNum());
-					expressionStack.pop();
+					operationStack.push(tok.getNum());
 					break;
 				case PLUS:
-					value = addStack(value, operationStack);
-					for (size_t j = 0; j < operationStack.size(); ++j)
-					{
-						expressionStack.pop();
-						operationStack.pop();
-					}
+					operateStack(&operationStack, PLUS);
 					break;
 				case MINUS:
-					value = subtractStack(value, operationStack);
-					for (size_t j = 0; j < operationStack.size(); ++j)
-					{
-						expressionStack.pop();
-						operationStack.pop();
-					}
+					operateStack(&operationStack, MINUS);
 					break;
 				case MULTIPLY:
-					value = multiplyStack(value, operationStack);
-					for (size_t j = 0; j < operationStack.size(); ++j)
-					{
-						expressionStack.pop();
-						operationStack.pop();
-					}
+					operateStack(&operationStack, MULTIPLY);
 					break;
 				case DIVIDE:
-					value = divideStack(value, operationStack);
-					for (size_t j = 0; j < operationStack.size(); ++j)
-					{
-						expressionStack.pop();
-						operationStack.pop();
-					}
+					operateStack(&operationStack, DIVIDE);
 					break;
 				default:
 					std::cerr << "Error: invalid argument/operand" << std::endl;
 					return (1);
 			}
+			expressionStack.pop();
 			++i;
 		}
-		std::cout << value << std::endl;
+		std::cout << operationStack.top() << std::endl;
 	}
 
 	return (0);
