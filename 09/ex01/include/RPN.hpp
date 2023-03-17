@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InputToken.hpp                                     :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 02:44:46 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 03:19:43 by pandalaf         ###   ########.fr       */
+/*   Created: 2023/03/17 10:39:07 by pandalaf          #+#    #+#             */
+/*   Updated: 2023/03/17 10:40:54 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUTTOKEN_HPP
-# define INPUTTOKEN_HPP
+#ifndef RPN_HPP
+# define RPN_HPP
 
-# include <string>
-# include <exception>
+#include <stack>
+#include <string>
+#include <exception>
+
+int	addStack(int start, std::stack<int>);
+
+int	subtractStack(int start, std::stack<int>);
+
+int	multiplyStack(int start, std::stack<int>);
+
+int	divideStack(int start, std::stack<int>);
 
 bool	isValid(const char);
 
@@ -67,5 +76,4 @@ class	InputToken
 			const char *	what() const throw();
 	};
 };
-
 #endif

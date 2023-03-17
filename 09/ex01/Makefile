@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/17 03:22:26 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/17 10:47:58 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,12 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE := InputToken.hpp StackOperations.hpp StackOperations.tpp
+INC_PRE := RPN.hpp RPN.tpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp InputToken.cpp StackOperations.cpp
+SRC_PRE	:= main.cpp RPN.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -52,7 +52,15 @@ endif
 all: $(NAME) directories
 
 run: all
-	./$(NAME)
+	./$(NAME) $(ARGS)
+
+test: all
+	./$(NAME) "8 9 +"
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	./$(NAME) "7 7 * 7 -"
+	-./$(NAME) "8 9 + 6-"
+	-./$(NAME) "(1 + 1)"
+	-./$(NAME) "1 + 9 +"
 
 # Make directories
 directories: $(BUILD)
@@ -85,4 +93,4 @@ fclean: clean
 re: fclean all
 
 # State rules as non-files
-.PHONY: all run directories clean fclean re
+.PHONY: all run test directories clean fclean re

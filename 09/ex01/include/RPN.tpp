@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StackOperations.hpp                                :+:      :+:    :+:   */
+/*   RPN.tpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 03:06:41 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 03:10:49 by pandalaf         ###   ########.fr       */
+/*   Created: 2023/03/17 10:41:14 by pandalaf          #+#    #+#             */
+/*   Updated: 2023/03/17 10:41:49 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACKOPERATIONS_HPP
-# define STACKOPERATIONS_HPP
+#ifndef RPN_TPP
+# define RPN_TPP
 
-# include <stack>
+#include <stack>
 
-int	addStack(int start, std::stack<int>);
+template <typename Type>
+void	reverseStack(std::stack<Type> * stack)
+{
+	std::stack<Type>	out;
 
-int	subtractStack(int start, std::stack<int>);
-
-int	multiplyStack(int start, std::stack<int>);
-
-int	divideStack(int start, std::stack<int>);
+	while (!stack->empty())
+	{
+		out.push(stack->top());
+		stack->pop();
+	}
+	*stack = out;
+}
 
 #endif

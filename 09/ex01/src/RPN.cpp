@@ -1,18 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   InputToken.cpp                                     :+:      :+:    :+:   */
+/*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 02:48:48 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 03:19:35 by pandalaf         ###   ########.fr       */
+/*   Created: 2023/03/17 10:38:31 by pandalaf          #+#    #+#             */
+/*   Updated: 2023/03/17 10:42:24 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/InputToken.hpp"
+#include "../include/RPN.hpp"
+#include "../include/RPN.tpp"
 
 #include <cctype>
+
+int	addStack(int start, std::stack<int> stack)
+{
+	while (!stack.empty())
+	{
+		start += stack.top();
+		stack.pop();
+	}
+	return (start);
+}
+
+int	subtractStack(int start, std::stack<int> stack)
+{
+	while (!stack.empty())
+	{
+		start -= stack.top();
+		stack.pop();
+	}
+	return (start);
+}
+
+int	multiplyStack(int start, std::stack<int> stack)
+{
+	while (!stack.empty())
+	{
+		start *= stack.top();
+		stack.pop();
+	}
+	return (start);
+}
+
+int	divideStack(int	start, std::stack<int> stack)
+{
+	while (!stack.empty())
+	{
+		start /= stack.top();
+		stack.pop();
+	}
+	return (start);
+}
 
 bool	isValid(const char ch)
 {
