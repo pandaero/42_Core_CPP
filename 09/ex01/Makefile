@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/17 00:24:01 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/17 03:22:26 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,12 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE :=
+INC_PRE := InputToken.hpp StackOperations.hpp StackOperations.tpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
 SRC_DIR	:= src/
-SRC_PRE	:= main.cpp
+SRC_PRE	:= main.cpp InputToken.cpp StackOperations.cpp
 SRC		:= $(addprefix $(SRC_DIR), $(SRC_PRE))
 
 # Object files
@@ -66,7 +66,7 @@ $(addprefix $(BUILD), main.o): $(addprefix $(SRC_DIR), main.cpp) $(INC) | $(BUIL
 	$(CC) $(CFLAGS) $(COPT) $(DEFS) -c $< -o $@
 
 # Make required object files
-$(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR), %.hpp) | $(BUILD)
+$(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR), %.hpp) $(addprefix $(INC_DIR), %.tpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
 
 # Make the build directory
