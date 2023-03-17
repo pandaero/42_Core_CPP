@@ -6,13 +6,12 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:46:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 03:18:15 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 13:57:55 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/InputToken.hpp"
-#include "../include/StackOperations.hpp"
-#include "../include/StackOperations.tpp"
+#include "../include/RPN.hpp"
+#include "../include/RPN.tpp"
 
 #include <iostream>
 #include <sstream>
