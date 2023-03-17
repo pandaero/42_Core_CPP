@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 15:59:39 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:55:04 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,10 +214,12 @@ int	main(int argc, char **argv)
 			{
 				try
 				{
-					std::cout << out.getDate() << " => " << out.getValue() << " = " << exchange.findValue(out.getDate()) * out.getValue();
+					double val = exchange.findValue(out.getDate());
+					std::cout << out.getDate() << " => " << out.getValue() << " = " << val * out.getValue();
 				}
 				catch (BitcoinExchange::datePredatesException & exc)
 				{
+					std::cerr << exc.what();
 				}
 			}
 			else

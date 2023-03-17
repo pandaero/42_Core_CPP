@@ -41,7 +41,7 @@ OBJ_PRE	:= $(SRC_PRE:.cpp=.o)
 OBJ		:= $(addprefix $(BUILD), $(OBJ_PRE))
 
 # OS-Protection
-ifeq ($(shell uname), Darwin)
+ifeq ($(shell uname), Linux)
 	BUILD_DIR	:= $(BUILD)
 else
 	BUILD_DIR	:= $(patsubst %/, %, $(BUILD))
@@ -50,8 +50,9 @@ endif
 # RULES
 all: $(NAME) directories
 
+# Run executable, Usage: make run ARGS="input.txt"
 run: all
-	./$(NAME)
+	-./$(NAME) $(ARGS)
 
 # Make directories
 directories: $(BUILD)
