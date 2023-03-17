@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/17 13:31:13 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/17 18:07:52 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ COPT	:= -std=c++98
 
 # Default arguments
 ifeq ($(shell uname), Linux)
-	ARGS = `shuf -i 1-100000 -n 100 | tr "\n" " "`
+	ARGS = `shuf -i 1-100000 -n 1000 | tr "\n" " "`
 else
-	ARGS = `jot -r 100 1 100000 | tr '\n' ' '`
+	ARGS = `jot -r 1000 1 100000 | tr '\n' ' '`
 endif
 
 # Debug and leak-checking options. Usage: make DEBUG=1 LEAKS=1

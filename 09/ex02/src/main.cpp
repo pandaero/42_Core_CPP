@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 13:53:56 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:08:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-	std::vector<int>	inVector;
-	std::list<int>		inList;
+	PmergeMe	cont;
 
 	for (int i = 1; i < argc; ++i)
 	{
@@ -36,37 +35,31 @@ int	main(int argc, char **argv)
 			std::cerr << "Error: only positive integers accepted." << std::endl;
 			return (1);
 		}
-		inVector.push_back(atoi(argv[i]));
-		inList.push_back(atoi(argv[i]));
+		cont.push(atoi(argv[i]));
 	}
 
 	std::cout << "Before: ";
-	for (size_t i = 0; i < inVector.size(); ++i)
+	for (size_t i = 0; i < cont.size(); ++i)
 	{
-		std::cout << inVector[i];
-		if (i != inVector.size() - 1)
+		std::cout << cont[i];
+		if (i != cont.size() - 1)
 			std::cout << " ";
 	}
 	std::cout << std::endl;
 
 	clock_t	refVector = clock();
-
-	mergeSort(inVector.begin(), inVector.end(), inVector.size());
-
+	cont.mergeSortV();
 	clock_t	diffVector = clock() - refVector;
 
 	clock_t	refList = clock();
-
-	mergeSort(inList.begin(), inList.end(), inList.size());
-
+	cont.mergeSortL();
 	clock_t	diffList = clock() - refList;
 
-
 	std::cout << "After : ";
-	for (size_t i = 0; i < inVector.size(); ++i)
+	for (size_t i = 0; i < cont.size(); ++i)
 	{
-		std::cout << inVector[i];
-		if (i != inVector.size() - 1)
+		std::cout << cont[i];
+		if (i != cont.size() - 1)
 			std::cout << " ";
 	}
 	std::cout << std::endl;

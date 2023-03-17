@@ -6,20 +6,38 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:54:14 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 13:29:16 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:15:52 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <cstdlib>
-# include <algorithm>
 # include <list>
 # include <vector>
+# include <algorithm>
+# include <exception>
 
-void	mergeSort(typename std::vector<int>::iterator, typename std::vector<int>::iterator, size_t);
+template <class Iter>
+void	mergeSort(Iter, Iter);
 
-void	mergeSort(typename std::list<int>::iterator, typename std::list<int>::iterator, size_t);
+class	PmergeMe
+{
+	private:
+		std::vector<int>	_vector;
+		std::list<int>		_list;
 
+	public:
+		PmergeMe();
+		PmergeMe(const PmergeMe &);
+		~PmergeMe();
+		PmergeMe &	operator=(const PmergeMe &);
+
+		int	operator[](size_t) const;
+
+		void	push(int);
+		size_t	size();
+		void	mergeSortV();
+		void	mergeSortL();
+};
 #endif
