@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 21:52:17 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 05:08:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ BitcoinExchange::BitcoinExchange(std::string dataFileName)
 	}
 }
 
+ExchangeData	BitcoinExchange::last()
+{
+	return (*_exchangeHistory.end());
+}
+
 double	BitcoinExchange::findValue(Date date) const
 {
 	ExchangeData	search(date, 0);
@@ -88,10 +93,13 @@ double	BitcoinExchange::findValue(Date date) const
 	std::set<ExchangeData>::reverse_iterator	end = _exchangeHistory.rbegin();
 	std::advance(end, 1);
 	
-	// std::cout << end->getDate() << std::endl;
+	// std::cout << "Date: " << date << ", last date: " << end->getDate() << "date < last: " << (date < end->getDate()) << std::endl;
 
 	if (date > (end->getDate()))
+	{
+		throw dateExceedsException();
 		return (end->getValue());
+	}
 	if (date < _exchangeHistory.begin()->getDate())
 		throw datePredatesException();
 	if (date == _exchangeHistory.begin()->getDate())

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:22:39 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 21:31:54 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 05:08:59 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,9 +200,15 @@ int	main(int argc, char **argv)
 		{
 			if (inBuffer == "date | value")
 				continue;
+			if (inBuffer.find('|') == std::string::npos)
+			{
+				std::cerr << "Error: invalid input line." << std::endl;
+				continue; 
+			}
 			InputInstruction	out;
 			try
 			{
+				// std::cout << "Input line: \"" << inBuffer << "\", input date: " << out.getDate() << std::endl;
 				InputInstruction	in(inBuffer);
 				out = in;
 			}
@@ -220,6 +226,10 @@ int	main(int argc, char **argv)
 				catch (BitcoinExchange::datePredatesException & exc)
 				{
 					std::cerr << exc.what();
+				}
+				catch (BitcoinExchange::dateExceedsException & exc)
+				{
+					std::cout << out.getDate() << " => " << out.getValue() << " = " << exchange.last().getValue() << " (" << exc.what() << ")";
 				}
 			}
 			else

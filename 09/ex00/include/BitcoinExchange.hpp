@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:05:26 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 21:23:50 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 05:07:54 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class BitcoinExchange
 		BitcoinExchange &	operator=(const BitcoinExchange &);
 
 		BitcoinExchange(std::string);
+
+		ExchangeData	last();
 
 		double	findValue(Date) const;
 
