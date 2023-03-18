@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:19:05 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 11:48:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:02:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,14 @@ BitcoinExchange::BitcoinExchange(std::string dataFileName):
 	new (this) BitcoinExchange(data);
 }
 
-#include <iostream>
 double	BitcoinExchange::find(std::string date)
 {
+	if (date >= lastDate())
+	{
+		std::map<std::string, double>::const_reverse_iterator end;
+		end = _exchange.rbegin();
+		return (end->second);
+	}
 	return(_exchange.lower_bound(date)->second);
 }
 
@@ -110,7 +115,6 @@ std::string	BitcoinExchange::lastDate()
 {
 	std::map<std::string, double>::const_reverse_iterator end;
 	end = _exchange.rbegin();
-	std::advance(end, 1);
 	return (end->first);
 }
 
