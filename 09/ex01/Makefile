@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/18 18:37:06 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/18 18:39:24 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ $(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR
 	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
 
 # Make the build directory
-$(BUILD_DIR):
+$(BUILD):
 	mkdir -p $(BUILD_DIR)
 
 # Clean intermediary files

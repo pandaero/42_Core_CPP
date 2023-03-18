@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/17 18:07:52 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/18 18:39:20 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,12 +80,12 @@ build/PmergeMe.o: src/PmergeMe.cpp include/PmergeMe.hpp | build/
 	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
 
 # Make the build directory
-$(BUILD_DIR):
+$(BUILD):
 	mkdir -p $(BUILD_DIR)
 
 # Clean intermediary files
 clean:
-	rm -rf $(BUILD)
+	rm -rf $(BUILD_DIR)
 
 # Clean all files
 fclean: clean
