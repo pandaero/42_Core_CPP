@@ -63,6 +63,11 @@ InputInstruction::InputInstruction(Date date, double value):
 		new (this) InputInstruction(date, value, negValueException().what());
 		throw negValueException();
 	}
+	if (value > 1000)
+	{
+		new (this) InputInstruction(date, value, negValueException().what());
+		throw largeValueException();
+	}
 }
 
 InputInstruction::InputInstruction(std::string input):
@@ -97,6 +102,10 @@ InputInstruction::InputInstruction(std::string input):
 	catch (Date::invalidYearException & exc)
 	{
 		new (this) InputInstruction(Date(), 0, invalidDateException().what());
+	}
+	catch (largeValueException & exc)
+	{
+		new (this) InputInstruction(Date(), 0, exc.what());
 	}
 	catch (negValueException & exc)
 	{
@@ -139,6 +148,11 @@ void	InputInstruction::takeInput(std::string input)
 const char *	InputInstruction::invalidInputException::what() const throw()
 {
 	return ("Error: InputInstruction: invalid input.");
+}
+
+const char *	InputInstruction::largeValueException::what() const throw()
+{
+	return ("Error: InputInstruction: value too large.");
 }
 
 const char *	InputInstruction::negValueException::what() const throw()

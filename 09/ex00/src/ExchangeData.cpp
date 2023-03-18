@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:26:37 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 11:24:57 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:50:40 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ ExchangeData::ExchangeData(std::string input):
 
 	std::string	dateStr = input.substr(0, commaPos);
 	std::string	valueStr = input.substr(commaPos + 1, input.length());
+
+	// std::cout << dateStr << ", " << valueStr << std::endl;
 
 	try
 	{

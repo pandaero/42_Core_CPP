@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:18:21 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 16:23:48 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:08:29 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ class	InputInstruction
 	};
 	
 	class	negValueException: public std::exception
+	{
+		public:
+			const char *	what() const throw();
+	};
+
+	class	largeValueException: public std::exception
 	{
 		public:
 			const char *	what() const throw();

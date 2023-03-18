@@ -6,12 +6,13 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 16:18:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:52:17 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/BitcoinExchange.hpp"
 
+#include <iterator>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -84,26 +85,38 @@ double	BitcoinExchange::findValue(Date date) const
 {
 	ExchangeData	search(date, 0);
 
-	if (search.getDate() < _exchangeHistory.begin()->getDate())
-		throw datePredatesException();
-	if (search.getDate() == _exchangeHistory.begin()->getDate())
-		return (_exchangeHistory.begin()->getValue());
+	std::set<ExchangeData>::reverse_iterator	end = _exchangeHistory.rbegin();
+	std::advance(end, 1);
 	
-	ExchangeData	newSearch(--search.getDate(), 0);
+	// std::cout << end->getDate() << std::endl;
 
-	while (_exchangeHistory.find(newSearch) == _exchangeHistory.end() && newSearch.getDate() > _exchangeHistory.begin()->getDate())
-	{
-		Date	newDate = newSearch.getDate();
-		--newDate;
-		ExchangeData	newestSearch(newDate, 0);
-		newSearch = newestSearch;
-	}
-	return (_exchangeHistory.find(newSearch)->getValue());
+	if (date > (end->getDate()))
+		return (end->getValue());
+	if (date < _exchangeHistory.begin()->getDate())
+		throw datePredatesException();
+	if (date == _exchangeHistory.begin()->getDate())
+		return (_exchangeHistory.begin()->getValue());
+
+	return (_exchangeHistory.lower_bound(search)->getValue());
+
+	// while (_exchangeHistory.find(newSearch) == _exchangeHistory.end() && newSearch.getDate() > _exchangeHistory.begin()->getDate())
+	// {
+	// 	Date	newDate = newSearch.getDate();
+	// 	--newDate;
+	// 	ExchangeData	newestSearch(newDate, 0);
+	// 	newSearch = newestSearch;
+	// }
+	// return (_exchangeHistory.find(newSearch)->getValue());
 }
 
 const char *	BitcoinExchange::invalidFileException::what() const throw()
 {
 	return ("Error: Exchange: Data input file invalid.");
+}
+
+const char *	BitcoinExchange::dateExceedsException::what() const throw()
+{
+	return ("Error: Exchange: Date exceeds exchange.");
 }
 
 const char *	BitcoinExchange::datePredatesException::what() const throw()
