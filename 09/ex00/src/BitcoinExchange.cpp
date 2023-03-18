@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:19:05 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 19:02:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:22:32 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ BitcoinExchange::BitcoinExchange(std::string dataFileName):
 		pair = make_pair(dateStr, atof(priceStr.c_str()));
 		data.insert(pair);
 	}
+	dataFile.close();
 	new (this) BitcoinExchange(data);
 }
 

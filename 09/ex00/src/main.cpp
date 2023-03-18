@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 09:30:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 11:49:33 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 23:25:20 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int argc, char ** argv)
 
 			std::cout << dateStr << " => " << query << " = " << std::fixed << std::setprecision(2) << exchange.find(dateStr) * query << std::endl;
 		}
+		inFile.close();
 	}
 	else
 	{
