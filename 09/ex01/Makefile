@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/17 10:47:58 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/18 18:37:06 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(BUILD_DIR):
 
 # Clean intermediary files
 clean:
-	rm -rf $(BUILD)
+	rm -rf $(BUILD_DIR)
 
 # Clean all files
 fclean: clean
