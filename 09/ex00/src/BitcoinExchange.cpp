@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 05:08:20 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 05:09:53 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,7 @@ double	BitcoinExchange::findValue(Date date) const
 	// std::cout << "Date: " << date << ", last date: " << end->getDate() << "date < last: " << (date < end->getDate()) << std::endl;
 
 	if (date > (end->getDate()))
-	{
 		throw dateExceedsException();
-		return (end->getValue());
-	}
 	if (date < _exchangeHistory.begin()->getDate())
 		throw datePredatesException();
 	if (date == _exchangeHistory.begin()->getDate())
