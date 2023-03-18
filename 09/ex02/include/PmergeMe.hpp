@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:54:14 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 18:15:52 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/18 21:03:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 # include <exception>
 
 template <class Iter>
-void	mergeSort(Iter, Iter);
+void	mergeSort(Iter, Iter, size_t);
+
+template <class Iter>
+void	mergeInsertSortV(Iter, Iter, size_t);
 
 class	PmergeMe
 {
