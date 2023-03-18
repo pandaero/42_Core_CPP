@@ -5,126 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 14:06:18 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 05:09:53 by pandalaf         ###   ########.fr       */
+/*   Created: 2023/03/18 10:19:05 by pandalaf          #+#    #+#             */
+/*   Updated: 2023/03/18 11:48:33 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/BitcoinExchange.hpp"
 
 #include <iterator>
-#include <iostream>
+#include <utility>
+#include <cstdlib>
 #include <fstream>
-#include <sstream>
 
-BitcoinExchange::BitcoinExchange()
+bool	validDate(std::string str)
+{
+	if (str.length() == 10)
+		return (true);
+	for (size_t i = 0; i < str.length(); ++i)
+	{
+		if ((i == 4 || i == 7) && str[i] == '-')
+			return (true);
+		if (i < 4 && isdigit(str[i]))
+			return (true);
+		if (i > 4 && i < 7 && isdigit(str[i]))
+			return (true);
+		if (i == 5 && (str[i] == '0' || str[i] == '1'))
+			return (true);
+		if (i > 7 && i < 10 && isdigit(str[i]))
+			return (true);
+	}
+	return (false);
+}
+
+BitcoinExchange::BitcoinExchange():
+	_exchange(std::map<std::string, double>())
 {
 
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange & other)
+BitcoinExchange::BitcoinExchange(const BitcoinExchange & other):
+	_exchange(other._exchange)
 {
-	_exchangeHistory = other._exchangeHistory;
+	
 }
 
 BitcoinExchange::~BitcoinExchange()
 {
-
+	
 }
 
-BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange & other)
+BitcoinExchange &	BitcoinExchange::operator=(const BitcoinExchange & other)
 {
 	if (this != &other)
 	{
-		_exchangeHistory = other._exchangeHistory;
+		new (this) BitcoinExchange(other);
 	}
 	return (*this);
 }
 
-BitcoinExchange::BitcoinExchange(std::string dataFileName)
+BitcoinExchange::BitcoinExchange(std::map<std::string, double> map):
+	_exchange(map)
 {
-	std::fstream	dataFile;
-	
-	try
-	{
-		dataFile.open(dataFileName.c_str());
-	}
-	catch (std::exception & exc)
-	{
-		std::cerr << exc.what() << std::endl;
-		throw invalidFileException();
-	}
+
+}
+
+BitcoinExchange::BitcoinExchange(std::string dataFileName):
+	_exchange(std::map<std::string, double>())
+{
+	std::map<std::string, double>	data;
+	std::fstream					dataFile(dataFileName.c_str());
+
+	if (dataFile.fail())
+		throw	invalidFileException();
 
 	std::string	buffer;
-	while (std::getline(dataFile, buffer))
+	while (getline(dataFile, buffer))
 	{
-		std::stringstream	bufferStream(buffer);
-		std::string			dataLine;
-
-		bufferStream >> dataLine;
-		if (dataLine == "date,exchange_rate")
+		if (buffer == "date,exchange_rate")
 			continue;
 		
-		ExchangeData	dataPoint;
+		std::size_t	commaPos = buffer.find(',');
+		std::string	dateStr(buffer.substr(0, commaPos));
+		std::string	priceStr(buffer.substr(commaPos + 1, buffer.length()));
 
-		try
-		{
-			dataPoint.takeInput(dataLine);
-		}
-		catch(const std::exception& exc)
-		{
-			// std::cerr << exc.what() << std::endl;
-			continue;
-		}
-
-		_exchangeHistory.insert(dataPoint);
+		std::pair<std::string, double>	pair;
+		pair = make_pair(dateStr, atof(priceStr.c_str()));
+		data.insert(pair);
 	}
+	new (this) BitcoinExchange(data);
 }
 
-ExchangeData	BitcoinExchange::last()
+#include <iostream>
+double	BitcoinExchange::find(std::string date)
 {
-	return (*_exchangeHistory.end());
+	return(_exchange.lower_bound(date)->second);
 }
 
-double	BitcoinExchange::findValue(Date date) const
+std::string	BitcoinExchange::firstDate()
 {
-	ExchangeData	search(date, 0);
+	return (_exchange.begin()->first);
+}
 
-	std::set<ExchangeData>::reverse_iterator	end = _exchangeHistory.rbegin();
+std::string	BitcoinExchange::lastDate()
+{
+	std::map<std::string, double>::const_reverse_iterator end;
+	end = _exchange.rbegin();
 	std::advance(end, 1);
-	
-	// std::cout << "Date: " << date << ", last date: " << end->getDate() << "date < last: " << (date < end->getDate()) << std::endl;
-
-	if (date > (end->getDate()))
-		throw dateExceedsException();
-	if (date < _exchangeHistory.begin()->getDate())
-		throw datePredatesException();
-	if (date == _exchangeHistory.begin()->getDate())
-		return (_exchangeHistory.begin()->getValue());
-
-	return (_exchangeHistory.lower_bound(search)->getValue());
-
-	// while (_exchangeHistory.find(newSearch) == _exchangeHistory.end() && newSearch.getDate() > _exchangeHistory.begin()->getDate())
-	// {
-	// 	Date	newDate = newSearch.getDate();
-	// 	--newDate;
-	// 	ExchangeData	newestSearch(newDate, 0);
-	// 	newSearch = newestSearch;
-	// }
-	// return (_exchangeHistory.find(newSearch)->getValue());
+	return (end->first);
 }
 
 const char *	BitcoinExchange::invalidFileException::what() const throw()
 {
-	return ("Error: Exchange: Data input file invalid.");
-}
-
-const char *	BitcoinExchange::dateExceedsException::what() const throw()
-{
-	return ("Error: Exchange: Date exceeds exchange.");
-}
-
-const char *	BitcoinExchange::datePredatesException::what() const throw()
-{
-	return ("Error: Exchange: Date predates exchange.");
+	return ("Error: BitcoinExchange: invalid data file.");
 }
