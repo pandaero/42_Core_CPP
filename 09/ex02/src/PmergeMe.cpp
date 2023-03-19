@@ -6,13 +6,14 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:20:58 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 22:55:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/19 00:12:25 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
 #include <utility>
+#include <set>
 
 #include <iostream>
 
@@ -29,42 +30,51 @@ void	mergeSort(Iter first, Iter last, size_t size)
 	}
 }
 
-template <class Iter>
-void	mergeInsertSortV(Iter first, Iter last, size_t size)
+void	PmergeMe::mergeInsertSortV(std::vector<int> & vec)
 {
-	std::vector<std::vector<int> >	pairs;
-	if (size % 2 == 0)
+	std::vector<int>::iterator	first;
+	std::vector<int>::iterator	last;
+
+	first = vec.begin();
+	last = vec.end();
+
+	std::vector<std::set<int> >	pairs;
+	if (vec.size() % 2 == 0)
 	{
 		while (first != last)
 		{
 			for (int i = 0; i < 2; ++i)
 			{
-				std::vector<int>	pairVector;
-				pairVector.push_back(*first++);
-				pairVector.push_back(*first);
-				pairs.push_back(pairVector);
+				std::set<int>	pair;
+				pair.insert(*first++);
+				pair.insert(*first);
+				pairs.push_back(pair);
 			}
 			if (first == last)
 				break;
 		}
 	}
-	std::vector<std::vector<int> >::iterator	pairIt = pairs.begin();
-	std::cout << (*pairIt)[0] << ", " << (*pairIt)[1] << std::endl;
-	std::advance(pairIt, 2);
-	std::cout << (*pairIt)[0] << ", " << (*pairIt)[1] << std::endl;
-
-
-	// else
-	// {
-	// 	while (first != last - 1)
-	// 	{
-
-	// 	}
-	// 	vector.push_back(last);
-	// }
-
-
-
+	else
+	{
+		std::vector<int>::iterator lastElement;
+		lastElement = vec.end();
+		--lastElement;
+		while (first != lastElement)
+		{
+			std::set<int>	pair;
+			pair.insert(*first++);
+			pair.insert(*first);
+			pairs.push_back(pair);
+		}
+		std::set <int>	oddOneOut;
+		oddOneOut.insert(*last);
+		pairs.push_back(oddOneOut);
+	}
+	std::vector<std::set<int> >::iterator	pairsIt;
+	pairsIt = pairs.begin();
+	std::cout << *((*pairsIt).begin()) << ", " << *((*pairsIt).end()) << std::endl;
+	// std::advance(pairsIt, 2);
+	// std::cout << (*pairsIt)[0] << ", " << (*pairsIt)[1] << std::endl;
 
 	// if (size > 1)
 	// {
@@ -74,6 +84,31 @@ void	mergeInsertSortV(Iter first, Iter last, size_t size)
 	// 	mergeSort(mid, last);
 	// 	std::inplace_merge(first, mid, last);
 	// }
+}
+
+template <class Iter>
+void	mergeInsertSortL(Iter first, Iter last, size_t size)
+{
+	// std::vector<std::vector<int> >	pairs;
+	// if (size % 2 == 0)
+	// {
+	// 	while (first != last)
+	// 	{
+	// 		for (int i = 0; i < 2; ++i)
+	// 		{
+	// 			std::vector<int>	pairVector;
+	// 			pairVector.push_back(*first++);
+	// 			pairVector.push_back(*first);
+	// 			pairs.push_back(pairVector);
+	// 		}
+	// 		if (first == last)
+	// 			break;
+	// 	}
+	// }
+	// std::vector<std::vector<int> >::iterator	pairsIt = pairs.begin();
+	// std::cout << (*pairsIt)[0] << ", " << (*pairsIt)[1] << std::endl;
+	// std::advance(pairsIt, 2);
+	// std::cout << (*pairsIt)[0] << ", " << (*pairsIt)[1] << std::endl;
 }
 
 PmergeMe::PmergeMe()
@@ -120,14 +155,12 @@ size_t	PmergeMe::size()
 
 void	PmergeMe::mergeSortV()
 {
-	mergeInsertSortV(_vector.begin(), _vector.end(), _vector.size());
 	mergeSort(_vector.begin(), _vector.end(), _vector.size());
 }
 
 void	PmergeMe::mergeInsertSortV()
 {
-	mergeInsertSortV(_vector.begin(), _vector.end(), _vector.size());
-	mergeSort(_vector.begin(), _vector.end(), _vector.size());
+	mergeInsertSortV(_vector);
 }
 
 void	PmergeMe::mergeSortL()
@@ -137,5 +170,5 @@ void	PmergeMe::mergeSortL()
 
 void	PmergeMe::mergeInsertSortL()
 {
-	mergeSort(_list.begin(), _list.end(), _list.size());
+	// mergeInsertSortL(_list.begin(), _list.end(), _list.size());
 }

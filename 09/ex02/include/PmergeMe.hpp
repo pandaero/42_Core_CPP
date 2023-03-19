@@ -6,23 +6,26 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:54:14 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 21:03:41 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/19 00:11:55 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <list>
-# include <vector>
 # include <algorithm>
 # include <exception>
+# include <vector>
+# include <list>
 
 template <class Iter>
 void	mergeSort(Iter, Iter, size_t);
 
+// template <class Iter>
+// void	mergeInsertSortV(Iter, Iter, size_t);
+
 template <class Iter>
-void	mergeInsertSortV(Iter, Iter, size_t);
+void	mergeInsertSortL(Iter, Iter, size_t);
 
 class	PmergeMe
 {
@@ -41,6 +44,9 @@ class	PmergeMe
 		void	push(int);
 		size_t	size();
 		void	mergeSortV();
+		void	mergeInsertSortV(std::vector<int> &);
+		void	mergeInsertSortV();
 		void	mergeSortL();
+		void	mergeInsertSortL();
 };
 #endif
