@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:20:58 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:41:46 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:55:00 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ struct s_listPairGreaterThan
 
 void	mergeInsertSortL(list * container)
 {
+	if (container->size() == 1)
+		return;
+
 	pairList	pairs;
 	straggler	strag(false, 0);
 
@@ -154,6 +157,8 @@ void	mergeInsertSortL(list * container)
 
 void	mergeInsertSortV(vec * container)
 {
+	if (container->size() == 1)
+		return;
 	pairVec		pairs;
 	straggler	strag(false, 0);
 
@@ -249,6 +254,16 @@ void	mergeSort(Iter first, Iter last, size_t size)
 	}
 }
 
+template <class Iter>
+bool	is_sorted(Iter first, Iter last)
+{
+	while (*first++ <= *first && first != last)
+		(void) last;
+	if (first != last)
+		return (false);
+	return (true);
+}
+
 PmergeMe::PmergeMe()
 {
 
@@ -294,19 +309,32 @@ size_t	PmergeMe::size()
 void	PmergeMe::mergeSortV()
 {
 	mergeSort(_vector.begin(), _vector.end(), _vector.size());
+	if (!::is_sorted(_vector.begin(), _vector.end()))
+		throw failedSortException();
 }
 
 void	PmergeMe::mergeInsertSortV()
 {
 	::mergeInsertSortV(&_vector);
+	if (!::is_sorted(_vector.begin(), _vector.end()))
+		throw failedSortException();
 }
 
 void	PmergeMe::mergeSortL()
 {
 	mergeSort(_list.begin(), _list.end(), _list.size());
+	if (!::is_sorted(_list.begin(), _list.end()))
+		throw failedSortException();
 }
 
 void	PmergeMe::mergeInsertSortL()
 {
 	::mergeInsertSortL(&_list);
+	if (!::is_sorted(_list.begin(), _list.end()))
+		throw failedSortException();
+}
+
+const char *	PmergeMe::failedSortException::what() const throw()
+{
+	return("Error: PmergeMe: unsuccessful sort of the container.");	
 }

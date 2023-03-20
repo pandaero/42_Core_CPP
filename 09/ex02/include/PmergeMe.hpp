@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:54:14 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:56:03 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:53:17 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ listSeq	jacobsthalSequenceUpToL(unsigned long);
 void	mergeInsertSortV(vec *);
 void	mergeInsertSortL(list *);
 
+template <class Iter>
+void	mergeSort(Iter, Iter, size_t);
+
+template <class Iter>
+bool	is_sorted(Iter, Iter);
+
 class	PmergeMe
 {
 	private:
@@ -62,5 +68,10 @@ class	PmergeMe
 		void	mergeInsertSortV();
 		void	mergeSortL();
 		void	mergeInsertSortL();
+
+	class	failedSortException: public std::exception
+	{
+		const char *	what() const throw();
+	};
 };
 #endif
