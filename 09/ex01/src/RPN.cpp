@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:38:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 14:40:22 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:50:39 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,18 @@ RPN::RPN(std::string expression):
 			throw invalidInputException();
 		if (*it == ' ')
 			continue;
+		std::string::iterator	ite = expression.end(); --ite;
 		if (*it >= '0' && *it <= '9')
 		{
 			std::string::iterator	itcpy = it; ++itcpy;
-			if (*itcpy != ' ')
+			if (it != ite && *itcpy != ' ')
 				throw invalidOperationException();
 			operationStack.push(*it - '0');
 		}
 		else if (operationStack.size() > 1)
 		{
 			std::string::iterator	itcpy = it; ++itcpy;
-			if (*itcpy != ' ')
+			if (it != ite && *itcpy != ' ')
 				throw invalidOperationException();
 			operateStack(&operationStack, *it);
 		}
