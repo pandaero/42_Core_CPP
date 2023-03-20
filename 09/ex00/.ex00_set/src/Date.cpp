@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:03:07 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/16 11:24:31 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:58:40 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 
 bool	isDateFormat(std::string str)
 {
-	if (str.length() == 10)
-		return (true);
+	if (str.length() != 10)
+		return (false);
 	for (size_t i = 0; i < str.length(); ++i)
 	{
-		if ((i == 4 || i == 7) && str[i] == '-')
-			return (true);
-		if (i < 4 && isdigit(str[i]))
-			return (true);
-		if (i > 4 && i < 7 && isdigit(str[i]))
-			return (true);
-		if (i == 5 && (str[i] == '0' || str[i] == '1'))
-			return (true);
-		if (i > 7 && i < 10 && isdigit(str[i]))
-			return (true);
+		if ((i == 4 || i == 7) && str[i] != '-')
+			return (false);
+		if (i < 4 && !isdigit(str[i]))
+			return (false);
+		if (i > 4 && i < 7 && !isdigit(str[i]))
+			return (false);
+		if (i == 5 && str[i] != '0' && str[i] != '1')
+			return (false);
+		if (i > 7 && i < 10 && !isdigit(str[i]))
+			return (false);
 	}
-	return (false);
+	return (true);
 }
 
 std::ostream &	operator<<(std::ostream & outStream, const Date & date)
