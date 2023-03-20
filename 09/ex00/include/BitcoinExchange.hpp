@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:13:41 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 11:17:50 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:13:01 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <string>
 # include <map>
+
+bool	validDateFormat(std::string);
 
 bool	validDate(std::string);
 
