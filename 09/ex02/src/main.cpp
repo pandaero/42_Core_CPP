@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:43:05 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 08:36:32 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,25 @@ int	main(int argc, char **argv)
 	std::cout << std::endl;
 
 	clock_t	refVector = clock();
-	cont.mergeInsertSortV();
+	try
+	{
+		cont.mergeInsertSortV();
+	}
+	catch (std::exception & exc)
+	{
+		std::cerr << exc.what() << std::endl;
+	}
 	clock_t	diffVector = clock() - refVector;
 
 	clock_t	refList = clock();
-	cont.mergeInsertSortL();
+	try
+	{
+		cont.mergeInsertSortL();
+	}
+	catch (std::exception & exc)
+	{
+		std::cerr << exc.what() << std::endl;
+	}
 	clock_t	diffList = clock() - refList;
 
 	std::cout << "After : ";
