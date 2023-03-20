@@ -6,156 +6,112 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:38:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 19:25:53 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:13:57 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/RPN.hpp"
-#include "../include/RPN.tpp"
 
-#include <cctype>
-
-void	operateStack(std::stack<int> * stack, t_tokenType type)
+void	operateStack(std::stack<int> * stack, char oprtor)
 {
-	int	first = stack->top();
-	stack->pop();
-	int	second = stack->top();
-	stack->pop();
-	switch (type)
+	int	first = stack->top(); stack->pop();
+	int second = stack->top(); stack->pop();
+	switch (oprtor)
 	{
-		case PLUS:
+		case '+':
 			stack->push(second + first);
 			break;
-		case MINUS:
+		case '-':
 			stack->push(second - first);
 			break;
-		case MULTIPLY:
+		case '*':
 			stack->push(second * first);
 			break;
-		case DIVIDE:
+		case '/':
 			stack->push(second / first);
 			break;
 		default:
-			// throw ;
+			throw RPN::invalidOperationException();
 			break;
 	}
 }
 
-bool	isValid(const char ch)
-{
-	std::string valid("0123456789+-*/");
-
-	for (size_t i = 0; i < valid.length(); ++i)
-	{
-		if (valid.find(ch) != std::string::npos)
-			return (true);
-	}
-	return (false);
-}
-
-bool	isValid(const std::string & str)
-{
-	std::string valid("0123456789+-*/");
-
-	if (str.length() != 1)
-		return (false);
-
-	for (size_t i = 0; i < valid.length(); ++i)
-	{
-		if (valid.find(str[0]) != std::string::npos)
-			return (true);
-	}
-	return (false);
-}
-
-bool	containsValid(char * str)
-{
-	std::string parse(str);
-	std::string	valid(" 0123456789+-*/");
-
-	for (size_t i = 0; i < valid.length(); ++i)
-	{
-		if (parse.find(valid[i]) != std::string::npos)
-			return (true);
-	}
-	return (false);
-}
-
-t_tokenType	tokType(const char ch)
-{
-	switch (ch)
-	{
-		case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
-			return (NUM);
-		case '+':
-			return (PLUS);
-		case '-':
-			return (MINUS);
-		case '*':
-			return (MULTIPLY);
-		case '/':
-			return (DIVIDE);
-		default:
-			return (INVALID);
-	}
-}
-
-int	tokNum(const char ch)
-{
-	if (isdigit(ch))
-		return (ch - 48);
-	return (-1);
-}
-
-InputToken::InputToken():
-	_token('\0')
+RPN::RPN(std::string expression, int result):
+	_expression(expression),
+	_result(result)
 {
 
 }
 
-InputToken::InputToken(const InputToken & other):
-	_token(other._token.raw)
+RPN::RPN():
+	_expression(""),
+	_result(0)
 {
 
 }
 
-InputToken::~InputToken()
+RPN::RPN(const RPN & other):
+	_expression(other._expression),
+	_result(other._result)
 {
 
 }
 
-InputToken::InputToken(const char ch):
-	_token(ch)
+RPN::~RPN()
 {
-	if (!isValid(ch))
-		throw invalidInputException();
+
 }
 
-InputToken &	InputToken::operator=(const InputToken & other)
+RPN &	RPN::operator=(const RPN & other)
 {
 	if (this != &other)
-	{
-		new (this) InputToken(other);
-	}
+		new (this) RPN(other._expression);
 	return (*this);
 }
 
-t_tokenType	InputToken::getType() const
+RPN::RPN(std::string expression):
+	_expression(""),
+	_result(0)
 {
-	return (_token.type);
+	std::string	valid(" 0123456789+-*/");
+	std::stack<int>	operationStack;
+	for (std::string::iterator it = expression.begin(); it != expression.end(); ++it)
+	{
+		if (valid.find(*it) == std::string::npos)
+			throw invalidInputException();
+		if (*it == ' ')
+			continue;
+		if (*it >= '0' && *it <= '9')
+		{
+			std::string::iterator	itcpy = it; ++itcpy;
+			if (*itcpy >= '0' && *itcpy <= '9')
+				throw invalidOperationException();
+			operationStack.push(*it - '0');
+		}
+		else if (operationStack.size() > 1)
+		{
+			std::string::iterator	itcpy = it; ++itcpy;
+			if (*itcpy >= '0' && *itcpy <= '9')
+				throw invalidOperationException();
+			operateStack(&operationStack, *it);
+		}
+		else
+			throw invalidOperationException();
+	}
+	new (this) RPN(expression, operationStack.top());
 }
 
-int	InputToken::getNum() const
+int	RPN::getResult()
 {
-	return (_token.num);
+	return (_result);
 }
 
-char	InputToken::getRaw() const
+const char *	RPN::invalidInputException::what() const throw()
 {
-	return (_token.raw);
+	return ("Error: RPN: invalid input.");
 }
 
-const char *	InputToken::invalidInputException::what() const throw()
+const char *	RPN::invalidOperationException::what() const throw()
 {
-	return ("Error: InputToken: invalid input.");
+	return ("Error: RPN: invalid operation.");
 }

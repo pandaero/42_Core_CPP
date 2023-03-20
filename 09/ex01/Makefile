@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/18 18:39:24 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/20 13:56:53 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ endif
 
 # Include files
 INC_DIR := include/
-INC_PRE := RPN.hpp RPN.tpp
+INC_PRE := RPN.hpp
 INC		:= $(addprefix $(INC_DIR), $(INC_PRE))
 
 # Source files
