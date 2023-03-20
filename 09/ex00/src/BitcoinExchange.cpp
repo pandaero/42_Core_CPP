@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:19:05 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 23:22:32 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:17:47 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,35 @@
 #include <cstdlib>
 #include <fstream>
 
-bool	validDate(std::string str)
+bool	validDateFormat(std::string str)
 {
-	if (str.length() == 10)
-		return (true);
+	if (str.length() != 10)
+		return (false);
 	for (size_t i = 0; i < str.length(); ++i)
 	{
-		if ((i == 4 || i == 7) && str[i] == '-')
-			return (true);
-		if (i < 4 && isdigit(str[i]))
-			return (true);
-		if (i > 4 && i < 7 && isdigit(str[i]))
-			return (true);
-		if (i == 5 && (str[i] == '0' || str[i] == '1'))
-			return (true);
-		if (i > 7 && i < 10 && isdigit(str[i]))
-			return (true);
+		if ((i == 4 || i == 7) && str[i] != '-')
+			return (false);
+		if (i < 4 && !isdigit(str[i]))
+			return (false);
+		if (i > 4 && i < 7 && !isdigit(str[i]))
+			return (false);
+		if (i == 5 && str[i] != '0' && str[i] != '1')
+			return (false);
+		if (i > 7 && i < 10 && !isdigit(str[i]))
+			return (false);
 	}
-	return (false);
+	return (true);
+}
+
+bool	validDate(std::string str)
+{
+	if (!validDateFormat(str))
+		return (false);
+	int	month = std::atoi(str.substr(4, 7).c_str());
+	int	day = std::atoi(str.substr(7, 10).c_str());
+	if (month > 12 || day > 31)
+		return (false);
+	return (true);
 }
 
 BitcoinExchange::BitcoinExchange():
@@ -104,7 +115,7 @@ double	BitcoinExchange::find(std::string date)
 		end = _exchange.rbegin();
 		return (end->second);
 	}
-	return(_exchange.lower_bound(date)->second);
+	return(_exchange.upper_bound(date)->second);
 }
 
 std::string	BitcoinExchange::firstDate()

@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 09:30:31 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/18 23:25:20 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:18:58 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char ** argv)
 		std::string	buffer;
 		while (getline(inFile, buffer))
 		{
-			if (buffer.find('|') == std::string::npos)
+			if (buffer.find('|') == std::string::npos || buffer.find('|') == buffer.size() - 1)
 			{
 				std::cerr << "Error: invalid input line." << std::endl;
 				continue;
@@ -69,14 +69,14 @@ int	main(int argc, char ** argv)
 			
 			if (!validDate(dateStr))
 			{
-				std::cerr << "Error: invalide date format" << std::endl;
+				std::cerr << "Error: invalid date format" << std::endl;
 				continue;
 			}
-			// if (dateStr < exchange.firstDate())
-			// {
-			// 	std::cerr << "Error. date predates exchange." << std::endl;
-			// 	continue;
-			// }
+			if (dateStr < exchange.firstDate())
+			{
+				std::cerr << "Error: date predates exchange." << std::endl;
+				continue;
+			}
 
 			std::string	queryStr(buffer.substr(pipePos + 2, buffer.length()));
 			double		query = std::atof(queryStr.c_str());
