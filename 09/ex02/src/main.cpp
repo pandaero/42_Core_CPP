@@ -6,16 +6,16 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 08:36:32 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 08:38:11 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
-#include <ctime>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
+#include <ctime>
 
 int	main(int argc, char **argv)
 {
