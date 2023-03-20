@@ -6,7 +6,11 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/20 00:14:52 by pandalaf         ###   ########.fr       */
+=======
+/*   Updated: 2023/03/19 00:13:34 by pandalaf         ###   ########.fr       */
+>>>>>>> 54652a12c5c5c2d1c736a87bf1d1eabe311f9e1c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +50,8 @@ int	main(int argc, char **argv)
 			std::cout << " ";
 	}
 	std::cout << std::endl;
+
+	cont.mergeInsertSortV();
 
 	clock_t	refVector = clock();
 	cont.mergeInsertSortV();

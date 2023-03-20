@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:20:58 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:06:01 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 02:36:13 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,31 @@ void	mergeSort(Iter first, Iter last, size_t size)
 	}
 }
 
+template <class Iter>
+void	mergeInsertSortL(Iter first, Iter last, size_t size)
+{
+	// std::vector<std::vector<int> >	pairs;
+	// if (size % 2 == 0)
+	// {
+	// 	while (first != last)
+	// 	{
+	// 		for (int i = 0; i < 2; ++i)
+	// 		{
+	// 			std::vector<int>	pairVector;
+	// 			pairVector.push_back(*first++);
+	// 			pairVector.push_back(*first);
+	// 			pairs.push_back(pairVector);
+	// 		}
+	// 		if (first == last)
+	// 			break;
+	// 	}
+	// }
+	// std::vector<std::vector<int> >::iterator	pairsIt = pairs.begin();
+	// std::cout << (*pairsIt)[0] << ", " << (*pairsIt)[1] << std::endl;
+	// std::advance(pairsIt, 2);
+	// std::cout << (*pairsIt)[0] << ", " << (*pairsIt)[1] << std::endl;
+}
+
 PmergeMe::PmergeMe()
 {
 
@@ -307,5 +332,5 @@ void	PmergeMe::mergeSortL()
 
 void	PmergeMe::mergeInsertSortL()
 {
-	mergeSort(_list.begin(), _list.end(), _list.size());
+	// mergeInsertSortL(_list.begin(), _list.end(), _list.size());
 }
