@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/17 18:08:41 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 00:14:52 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 			std::cerr << "Error: only positive integers accepted." << std::endl;
 			return (1);
 		}
-		cont.push(atoi(argv[i]));
+		cont.push(std::strtoul(argv[i], NULL, 10));
 	}
 
 	std::cout << "Before: ";
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	std::cout << std::endl;
 
 	clock_t	refVector = clock();
-	cont.mergeSortV();
+	cont.mergeInsertSortV();
 	clock_t	diffVector = clock() - refVector;
 
 	clock_t	refList = clock();
