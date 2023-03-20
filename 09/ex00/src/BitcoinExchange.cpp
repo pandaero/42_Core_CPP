@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:19:05 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 21:17:47 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:33:24 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ double	BitcoinExchange::find(std::string date)
 		end = _exchange.rbegin();
 		return (end->second);
 	}
-	return(_exchange.upper_bound(date)->second);
+	std::map<std::string, double>::const_iterator it = _exchange.upper_bound(date); --it;
+	return (it->second);
 }
 
 std::string	BitcoinExchange::firstDate()
