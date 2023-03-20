@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:10:16 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 08:38:11 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:38:29 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	main(int argc, char **argv)
 
 	for (int i = 1; i < argc; ++i)
 	{
-		if (atoi(argv[i]) < 0)
+		std::string	valid("0123456789");
+		std::string	check(argv[i]);
+		if (check.find_first_not_of(valid) != std::string::npos || atoi(argv[i]) < 0)
 		{
 			std::cerr << "Error: only positive integers accepted." << std::endl;
 			return (1);
