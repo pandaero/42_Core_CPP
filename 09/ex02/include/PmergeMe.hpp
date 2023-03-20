@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:54:14 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:36:30 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 02:55:30 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <exception>
 # include <vector>
 # include <list>
+
+template <class Iter>
+void	mergeSort(Iter, Iter, size_t);
 
 unsigned long	jacobsthalNumber(unsigned long);
 
@@ -40,12 +43,6 @@ listSeq	jacobsthalSequenceUpToL(unsigned long);
 
 void	mergeInsertSortV(vec *);
 void	mergeInsertSortL(list *);
-
-// template <class Iter>
-// void	mergeInsertSortV(Iter, Iter, size_t);
-
-template <class Iter>
-void	mergeSort(Iter, Iter, size_t);
 
 class	PmergeMe
 {
