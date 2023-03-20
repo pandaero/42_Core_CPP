@@ -6,7 +6,7 @@
 /*   By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:20:58 by pandalaf          #+#    #+#             */
-/*   Updated: 2023/03/20 02:41:46 by pandalaf         ###   ########.fr       */
+/*   Updated: 2023/03/20 08:03:41 by pandalaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ struct s_listPairGreaterThan
 
 void	mergeInsertSortL(list * container)
 {
+	if (container->size() == 1)
+		return;
+
 	pairList	pairs;
 	straggler	strag(false, 0);
 
@@ -154,6 +157,8 @@ void	mergeInsertSortL(list * container)
 
 void	mergeInsertSortV(vec * container)
 {
+	if (container->size() == 1)
+		return;
 	pairVec		pairs;
 	straggler	strag(false, 0);
 
