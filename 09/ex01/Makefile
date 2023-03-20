@@ -6,7 +6,7 @@
 #    By: pandalaf <pandalaf@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 18:46:28 by pandalaf          #+#    #+#              #
-#    Updated: 2023/03/20 13:56:53 by pandalaf         ###   ########.fr        #
+#    Updated: 2023/03/20 20:54:17 by pandalaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,10 +57,13 @@ run: all
 test: all
 	./$(NAME) "8 9 +"
 	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	./$(NAME) "9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -"
+	./$(NAME) "1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /"
 	./$(NAME) "7 7 * 7 -"
 	-./$(NAME) "8 9 + 6-"
 	-./$(NAME) "(1 + 1)"
-	-./$(NAME) "1 + 9 +"
+	-./$(NAME) "1 + 9 * *"
+	-./$(NAME) "1 + 9"
 
 # Make directories
 directories: $(BUILD)
@@ -74,7 +77,7 @@ $(addprefix $(BUILD), main.o): $(addprefix $(SRC_DIR), main.cpp) $(INC) | $(BUIL
 	$(CC) $(CFLAGS) $(COPT) $(DEFS) -c $< -o $@
 
 # Make required object files
-$(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR), %.hpp) $(addprefix $(INC_DIR), %.tpp) | $(BUILD)
+$(addprefix $(BUILD), %.o): $(addprefix $(SRC_DIR), %.cpp) $(addprefix $(INC_DIR), %.hpp) | $(BUILD)
 	$(CC) $(CFLAGS) $(COPT) -c $< -o $@
 
 # Make the build directory
